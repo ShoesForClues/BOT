@@ -2,11 +2,20 @@
 BOT (Block Oriented Template) is a minimal programming language that I wrote for fun.
 # Example code
 ```
+NULL "NULL blocks are ignored and can be used as comments."
+SET
+	GBL "PRINT"
+	FUN 1
+		NULL "INL (inline) blocks can be used to insert native code."
+		INL "print(string.char(unpack(i_0)))"
+			ARG 0
 CALL
-  GBL "SYSTEM.PRINT"
-  ARR "Hello World!"
+	GBL "PRINT"
+	ARR "Hello World!"
 ```
-To compile run ``lua bc.lua -i include/system.bot -i hello.bot -c hello.lua``
+To compile run ``lua bc.lua -i hello.bot -c hello.lua``
+
+You can find more examples under [examples](examples).
 # Compiling the compiler
 BOT is fully self-hosting and you can recompile the compiler by running the ``make`` command in the source folder.
 # License
