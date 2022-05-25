@@ -13,7 +13,7 @@ CALL
 	GBL "PRINT"
 	ARR "Hello World!"
 ```
-To compile run ``lua bc.lua -i hello.bot -c hello.lua``
+To compile run ``lua bc.lua -i example.bot -c example.lua``
 
 You can find more examples under [examples](examples).
 # Compiling the compiler
