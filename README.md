@@ -1,5 +1,5 @@
 # BOT
-BOT (Block Oriented Template) is a minimal programming language that I wrote for fun.
+BOT (Block Operation Tree) is a minimal programming language that I wrote for fun.
 # Example code
 ```
 NULL "NULL blocks are ignored and can be used as comments."
