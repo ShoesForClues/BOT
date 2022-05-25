@@ -1,0 +1,3 @@
+CALL
+	GBL "SYSTEM.PRINT"
+	ARR "Hello World!"

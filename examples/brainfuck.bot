@@ -1,0 +1,133 @@
+SET
+	VAR "DATA"
+	ARR
+RES
+	VAR "DATA"
+	NUM 256
+SET
+	VAR "PROGRAM"
+	ARR "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
+LEN
+	VAR "PROGRAM"
+	VAR "PROGRAM_SIZE"
+LOOP
+	CMP "="
+		VAR "PC"
+		VAR "PROGRAM_SIZE"
+		BRK
+	CMP "="
+		VAR "PROGRAM"
+			VAR "PC"
+		NUM ">"
+		ARIT "+"
+			VAR "DC"
+			NUM 1
+	CMP "="
+		VAR "PROGRAM"
+			VAR "PC"
+		NUM "<"
+		ARIT "-"
+			VAR "DC"
+			NUM 1
+	CMP "="
+		VAR "PROGRAM"
+			VAR "PC"
+		NUM "+"
+		ARIT "+"
+			VAR "DATA"
+				VAR "DC"
+			NUM 1
+	CMP "="
+		VAR "PROGRAM"
+			VAR "PC"
+		NUM "-"
+		ARIT "-"
+			VAR "DATA"
+				VAR "DC"
+			NUM 1
+	CMP "="
+		VAR "PROGRAM"
+			VAR "PC"
+		NUM "."
+		CALL
+			GBL "SYSTEM.PRINT"
+			ARR
+				VAR "DATA"
+					VAR "DC"
+	CMP "="
+		VAR "PROGRAM"
+			VAR "PC"
+		NUM "["
+		CMP "="
+			VAR "DATA"
+				VAR "DC"
+			NUM 0
+			SUB
+				SET
+					VAR "SC"
+					NUM 1
+				ARIT "+"
+					VAR "PC"
+					NUM 1
+				LOOP
+					CMP "="
+						VAR "SC"
+						NUM 0
+						BRK
+					CMP "="
+						VAR "PROGRAM"
+							VAR "PC"
+						NUM "["
+						ARIT "+"
+							VAR "SC"
+							NUM 1
+					CMP "="
+						VAR "PROGRAM"
+							VAR "PC"
+						NUM "]"
+						ARIT "-"
+							VAR "SC"
+							NUM 1
+					ARIT "+"
+						VAR "PC"
+						NUM 1
+	CMP "="
+		VAR "PROGRAM"
+			VAR "PC"
+		NUM "]"
+		CMP "!"
+			VAR "DATA"
+				VAR "DC"
+			NUM 0
+			SUB
+				SET
+					VAR "SC"
+					NUM 1
+				ARIT "-"
+					VAR "PC"
+					NUM 1
+				LOOP
+					CMP "="
+						VAR "SC"
+						NUM 0
+						BRK
+					CMP "="
+						VAR "PROGRAM"
+							VAR "PC"
+						NUM "]"
+						ARIT "+"
+							VAR "SC"
+							NUM 1
+					CMP "="
+						VAR "PROGRAM"
+							VAR "PC"
+						NUM "["
+						ARIT "-"
+							VAR "SC"
+							NUM 1
+					ARIT "-"
+						VAR "PC"
+						NUM 1
+	ARIT "+"
+		VAR "PC"
+		NUM 1
