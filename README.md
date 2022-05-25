@@ -1,5 +1,5 @@
 # BOT
-BOT (Block Operation Tree) is a minimal programming language that I wrote for fun.
+BOT (Block Operation Tree) is a minimal dynamically-typed programming language that compiles to Lua or other languages.
 # Example code
 ```
 NULL "NULL blocks are ignored and can be used as comments."
