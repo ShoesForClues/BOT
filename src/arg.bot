@@ -1,0 +1,46 @@
+SET
+	GBL "ARG.PARSE_OPTIONS"
+	FUN 2
+		SET
+			ARG 1
+			ARR
+		LEN
+			ARG 0
+			VAR "ARG_SIZE"
+		LOOP
+			CMP "="
+				VAR "ARG_INDEX"
+				VAR "ARG_SIZE"
+				BRK
+			SET
+				VAR "ARG"
+				ARG 0
+					VAR "ARG_INDEX"
+			CMP "="
+				VAR "ARG"
+					NUM 0
+				NUM "-"
+				CALL
+					GBL "ARRAY.ADD"
+					ARG 1
+					ARR
+						VAR "ARG"
+				SUB
+					LEN
+						ARG 1
+						VAR "OPTION_COUNT"
+					CMP ">"
+						VAR "OPTION_COUNT"
+						NUM 0
+						SUB
+							ARIT "-"
+								VAR "OPTION_COUNT"
+								NUM 1
+							CALL
+								GBL "ARRAY.ADD"
+								ARG 1
+									VAR "OPTION_COUNT"
+								VAR "ARG"
+			ARIT "+"
+				VAR "ARG_INDEX"
+				NUM 1

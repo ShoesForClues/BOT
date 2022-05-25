@@ -1,0 +1,133 @@
+CALL
+	GBL "ARG.PARSE_OPTIONS"
+	ARG 0
+	VAR "OPTIONS"
+LEN
+	VAR "OPTIONS"
+	VAR "OPTION_COUNT"
+CMP "="
+	VAR "OPTION_COUNT"
+	NUM 0
+	SUB
+		CALL
+			GBL "STRING.FORMAT"
+			ARR
+				NUM "BOT v10 Copyright (C) 2022 Shoelee\n"
+				NUM "Usage: bc -i <input> -c <output>\n"
+				NUM "Options:\n"
+				NUM "-i <input>  Import source.\n"
+				NUM "-e <output> Export source.\n"
+				NUM "-c <output> Compile source."
+			VAR "ABOUT_STRING"
+		CALL
+			GBL "SYSTEM.PRINT"
+			VAR "ABOUT_STRING"
+		RET
+CALL
+	GBL "BOT.BLOCK.NEW"
+	VAR "MAIN_BLOCK"
+CALL
+	GBL "BOT.BLOCK.SET_CODE_FROM_STRING"
+	VAR "MAIN_BLOCK"
+	ARR "FUN"
+CALL
+	GBL "BOT.BLOCK.ADD_VALUE"
+	VAR "MAIN_BLOCK"
+	NUM 1
+LOOP
+	CMP "="
+		VAR "OPTION_INDEX"
+		VAR "OPTION_COUNT"
+		BRK
+	SET
+		VAR "OPTION"
+		VAR "OPTIONS"
+			VAR "OPTION_INDEX"
+	SET
+		VAR "VALID_OPTION"
+		NUM 0
+	CMP "="
+		VAR "OPTION"
+			NUM 0
+			NUM 1
+		NUM "i"
+		SUB
+			SET
+				VAR "VALID_OPTION"
+				NUM 1
+			CALL
+				GBL "SYSTEM.IMPORT"
+				VAR "OPTION"
+					NUM 1
+				VAR "SOURCE"
+			CMP "="
+				VAR "SOURCE"
+				NUM 0
+				SUB
+					CALL
+						GBL "STRING.CONCAT"
+						ARR "Could not open file: "
+						VAR "OPTION"
+							NUM 1
+						VAR "ERROR_MESSAGE"
+					CALL
+						GBL "SYSTEM.PRINT"
+						VAR "ERROR_MESSAGE"
+					RET
+			CALL
+				GBL "BOT.IMPORT"
+				VAR "SOURCE"
+				VAR "MAIN_BLOCK"
+	CMP "="
+		VAR "OPTION"
+			NUM 0
+			NUM 1
+		NUM "e"
+		SUB
+			SET
+				VAR "VALID_OPTION"
+				NUM 1
+			CALL
+				GBL "BOT.EXPORT"
+				VAR "MAIN_BLOCK"
+				VAR "SOURCE"
+			CALL
+				GBL "SYSTEM.EXPORT"
+				VAR "OPTION"
+					NUM 1
+				VAR "SOURCE"
+	CMP "="
+		VAR "OPTION"
+			NUM 0
+			NUM 1
+		NUM "c"
+		SUB
+			SET
+				VAR "VALID_OPTION"
+				NUM 1
+			CALL
+				GBL "BOT.COMPILE"
+				VAR "MAIN_BLOCK"
+				VAR "SOURCE"
+			CALL
+				GBL "SYSTEM.EXPORT"
+				VAR "OPTION"
+					NUM 1
+				VAR "SOURCE"
+	CMP "="
+		VAR "VALID_OPTION"
+		NUM 0
+		SUB
+			CALL
+				GBL "STRING.CONCAT"
+				ARR "Invalid option: "
+				VAR "OPTION"
+					NUM 0
+				VAR "ERROR_MESSAGE"
+			CALL
+				GBL "SYSTEM.PRINT"
+				VAR "ERROR_MESSAGE"
+			RET
+	ARIT "+"
+		VAR "OPTION_INDEX"
+		NUM 1

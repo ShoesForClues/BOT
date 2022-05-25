@@ -1,0 +1,602 @@
+SET
+	GBL "STRING.BASE_LOOKUP"
+	ARR "0123456789ABCDEF"
+SET
+	GBL "STRING.NEW_LINE"
+	ARR 10
+SET
+	GBL "STRING.CONCAT"
+	FUN 3
+		LEN
+			ARG 0
+			VAR "SIZE_1"
+		LEN
+			ARG 1
+			VAR "SIZE_2"
+		ARIT "+"
+			VAR "SIZE_1"
+			VAR "SIZE_2"
+			VAR "SIZE_3"
+		SET
+			ARG 2
+			ARR
+		RES
+			ARG 2
+			VAR "SIZE_3"
+		LOOP
+			CMP "="
+				VAR "INDEX"
+				VAR "SIZE_1"
+				BRK
+			SET
+				ARG 2
+					VAR "INDEX"
+				ARG 0
+					VAR "INDEX"
+			ARIT "+"
+				VAR "INDEX"
+				NUM 1
+		LOOP
+			CMP "="
+				VAR "INDEX"
+				VAR "SIZE_3"
+				BRK
+			SET
+				ARG 2
+					VAR "INDEX"
+				ARG 1
+					VAR "INDEX_2"
+			ARIT "+"
+				VAR "INDEX"
+				NUM 1
+			ARIT "+"
+				VAR "INDEX_2"
+				NUM 1
+SET
+	GBL "STRING.COMPILE"
+	FUN 3
+		LEN
+			ARG 0
+			VAR "LIST_SIZE"
+		LEN
+			ARG 1
+			VAR "DIVIDER_SIZE"
+		ARIT "-"
+			VAR "LIST_SIZE"
+			NUM 1
+			VAR "COMPILE_SIZE"
+		ARIT "*"
+			VAR "COMPILE_SIZE"
+			VAR "DIVIDER_SIZE"
+		LOOP
+			CMP "="
+				VAR "LIST_INDEX"
+				VAR "LIST_SIZE"
+				BRK
+			LEN
+				ARG 0
+					VAR "LIST_INDEX"
+				VAR "STRING_SIZE"
+			ARIT "+"
+				VAR "COMPILE_SIZE"
+				VAR "STRING_SIZE"
+			ARIT "+"
+				VAR "LIST_INDEX"
+				NUM 1
+		SET
+			ARG 2
+			ARR
+		RES
+			ARG 2
+			VAR "COMPILE_SIZE"
+		SET
+			VAR "LIST_INDEX"
+			NUM 0
+		LOOP
+			CMP "="
+				VAR "LIST_INDEX"
+				VAR "LIST_SIZE"
+				BRK
+			SET
+				VAR "CURRENT_STRING"
+				ARG 0
+					VAR "LIST_INDEX"
+			LEN
+				VAR "CURRENT_STRING"
+				VAR "STRING_SIZE"
+			SET
+				VAR "STRING_INDEX"
+				NUM 0
+			LOOP
+				CMP "="
+					VAR "STRING_INDEX"
+					VAR "STRING_SIZE"
+					BRK
+				SET
+					ARG 2
+						VAR "COMPILE_INDEX"
+					VAR "CURRENT_STRING"
+						VAR "STRING_INDEX"
+				ARIT "+"
+					VAR "STRING_INDEX"
+					NUM 1
+				ARIT "+"
+					VAR "COMPILE_INDEX"
+					NUM 1
+			ARIT "+"
+				VAR "LIST_INDEX"
+				NUM 1
+			CMP "<"
+				VAR "LIST_INDEX"
+				VAR "LIST_SIZE"
+				SUB
+					SET
+						VAR "DIVIDER_INDEX"
+						NUM 0
+					LOOP
+						CMP "="
+							VAR "DIVIDER_INDEX"
+							VAR "DIVIDER_SIZE"
+							BRK
+						SET
+							ARG 2
+								VAR "COMPILE_INDEX"
+							ARG 1
+								VAR "DIVIDER_INDEX"
+						ARIT "+"
+							VAR "DIVIDER_INDEX"
+							NUM 1
+						ARIT "+"
+							VAR "COMPILE_INDEX"
+							NUM 1
+SET
+	GBL "STRING.SUB"
+	FUN 4
+		ARIT "-"
+			ARG 2
+			ARG 1
+			VAR "LENGTH"
+		SET
+			ARG 3
+			ARR
+		RES
+			ARG 3
+			VAR "LENGTH"
+		LOOP
+			CMP "<"
+				VAR "LENGTH"
+				VAR "INDEX"
+				BRK
+			ARIT "+"
+				ARG 1
+				VAR "INDEX"
+				VAR "OFFSET"
+			SET
+				ARG 3
+					VAR "INDEX"
+				ARG 0
+					VAR "OFFSET"
+			ARIT "+"
+				VAR "INDEX"
+				NUM 1
+SET
+	GBL "STRING.COMPARE"
+	FUN 3
+		SET
+			ARG 2
+			NUM 0
+		LEN
+			ARG 0
+			VAR "SIZE_1"
+		LEN
+			ARG 1
+			VAR "SIZE_2"
+		CMP "!"
+			VAR "SIZE_1"
+			VAR "SIZE_2"
+			RET
+		LOOP
+			CMP "="
+				VAR "INDEX"
+				VAR "SIZE_1"
+				BRK
+			CMP "!"
+				ARG 0
+					VAR "INDEX"
+				ARG 1
+					VAR "INDEX"
+				RET
+			ARIT "+"
+				VAR "INDEX"
+				NUM 1
+		SET
+			ARG 2
+			NUM 1
+SET
+	GBL "STRING.TO_STRING"
+	FUN 3
+		CMP "<"
+			ARG 0
+			ARG 1
+			CALL
+				GBL "STRING.SUB"
+				GBL "STRING.BASE_LOOKUP"
+				ARG 0
+				ARG 0
+				ARG 2
+			SUB
+				ARIT "/"
+					ARG 0
+					ARG 1
+					VAR "INT"
+				ARIT "%"
+					VAR "INT"
+					NUM 1
+					VAR "DECIMAL"
+				ARIT "-"
+					VAR "INT"
+					VAR "DECIMAL"
+				CALL
+					GBL "STRING.TO_STRING"
+					VAR "INT"
+					ARG 1
+					VAR "STRING"
+				ARIT "%"
+					ARG 0
+					ARG 1
+					VAR "WRAP"
+				CALL
+					GBL "STRING.SUB"
+					GBL "STRING.BASE_LOOKUP"
+					VAR "WRAP"
+					VAR "WRAP"
+					VAR "NEXT_STRING"
+				CALL
+					GBL "STRING.CONCAT"
+					VAR "STRING"
+					VAR "NEXT_STRING"
+					ARG 2
+SET
+	GBL "STRING.TO_NUMBER"
+	FUN 2
+		SET
+			ARG 1
+			NUM 0
+		LEN
+			ARG 0
+			VAR "LENGTH"
+		LOOP
+			CMP "="
+				VAR "INDEX"
+				VAR "LENGTH"
+				BRK
+			ARIT "*"
+				ARG 1
+				NUM 10
+			ARIT "-"
+				ARG 0
+					VAR "INDEX"
+				NUM 48
+				VAR "ASCII_OFFSET"
+			ARIT "+"
+				ARG 1
+				VAR "ASCII_OFFSET"
+			ARIT "+"
+				VAR "INDEX"
+				NUM 1
+SET
+	GBL "STRING.FIND"
+	FUN 6
+		LEN
+			ARG 0
+			VAR "LENGTH_A"
+		LEN
+			ARG 1
+			VAR "LENGTH_B"
+		SET
+			VAR "INDEX_A"
+			ARG 2
+		SET
+			ARG 3
+			NUM 0
+		SET
+			ARG 4
+			NUM 0
+		SET
+			ARG 5
+			NUM 0
+		LOOP
+			ARIT "-"
+				VAR "LENGTH_A"
+				VAR "INDEX_A"
+				VAR "REMAINING"
+			CMP "<"
+				VAR "REMAINING"
+				VAR "LENGTH_B"
+				BRK
+			SET
+				VAR "MATCH"
+				NUM 1
+			SET
+				VAR "INDEX_B"
+				NUM 0
+			SET
+				VAR "INDEX_C"
+				VAR "INDEX_A"
+			LOOP
+				CMP "="
+					VAR "INDEX_B"
+					VAR "LENGTH_B"
+					BRK
+				CMP "="
+					VAR "INDEX_C"
+					VAR "LENGTH_A"
+					BRK
+				CMP "!"
+					ARG 0
+						VAR "INDEX_C"
+					ARG 1
+						VAR "INDEX_B"
+					SUB
+						SET
+							VAR "MATCH"
+							NUM 0
+						BRK
+				ARIT "+"
+					VAR "INDEX_B"
+					NUM 1
+				ARIT "+"
+					VAR "INDEX_A"
+					VAR "INDEX_B"
+					VAR "INDEX_C"
+			CMP "="
+				VAR "MATCH"
+				NUM 1
+				SUB
+					CMP "="
+						ARG 3
+						NUM 0
+						SUB
+							SET
+								ARG 4
+								VAR "INDEX_A"
+							ARIT "-"
+								VAR "INDEX_C"
+								NUM 1
+								ARG 5
+					ARIT "+"
+						ARG 3
+						NUM 1
+			ARIT "+"
+				VAR "INDEX_A"
+				NUM 1
+SET
+	GBL "STRING.FORMAT"
+	FUN 2
+		LEN
+			ARG 0
+			VAR "STRING_LENGTH"
+		SET
+			VAR "FORMAT_LENGTH"
+			VAR "STRING_LENGTH"
+		LOOP
+			CMP "="
+				VAR "MEASURE_INDEX"
+				VAR "STRING_LENGTH"
+				BRK
+			CMP "="
+				ARG 0
+					VAR "MEASURE_INDEX"
+				NUM "\"
+				ARIT "-"
+					VAR "FORMAT_LENGTH"
+					NUM 1
+			ARIT "+"
+				VAR "MEASURE_INDEX"
+				NUM 1
+		SET
+			ARG 1
+			ARR
+		RES
+			ARG 1
+			VAR "FORMAT_LENGTH"
+		LOOP
+			CMP "="
+				VAR "STRING_INDEX"
+				VAR "STRING_LENGTH"
+				BRK
+			CMP "="
+				ARG 0
+					VAR "STRING_INDEX"
+				NUM "\"
+				SUB
+					ARIT "+"
+						VAR "STRING_INDEX"
+						NUM 1
+						VAR "STRING_OFFSET"
+					CMP "="
+						ARG 0
+							VAR "STRING_OFFSET"
+						NUM "\"
+						SET
+							ARG 1
+								VAR "FORMAT_INDEX"
+							NUM "\"
+					CMP "="
+						ARG 0
+							VAR "STRING_OFFSET"
+						NUM "a"
+						SET
+							ARG 1
+								VAR "FORMAT_INDEX"
+							NUM 7
+					CMP "="
+						ARG 0
+							VAR "STRING_OFFSET"
+						NUM "b"
+						SET
+							ARG 1
+								VAR "FORMAT_INDEX"
+							NUM 8
+					CMP "="
+						ARG 0
+							VAR "STRING_OFFSET"
+						NUM "n"
+						SET
+							ARG 1
+								VAR "FORMAT_INDEX"
+							NUM 10
+					CMP "="
+						ARG 0
+							VAR "STRING_OFFSET"
+						NUM "r"
+						SET
+							ARG 1
+								VAR "FORMAT_INDEX"
+							NUM 13
+					CMP "="
+						ARG 0
+							VAR "STRING_OFFSET"
+						NUM "t"
+						SET
+							ARG 1
+								VAR "FORMAT_INDEX"
+							NUM "	"
+					CMP "="
+						ARG 0
+							VAR "STRING_OFFSET"
+						NUM "v"
+						SET
+							ARG 1
+								VAR "FORMAT_INDEX"
+							NUM 11
+					ARIT "+"
+						VAR "STRING_INDEX"
+						NUM 1
+				SET
+					ARG 1
+						VAR "FORMAT_INDEX"
+					ARG 0
+						VAR "STRING_INDEX"
+			ARIT "+"
+				VAR "STRING_INDEX"
+				NUM 1
+			ARIT "+"
+				VAR "FORMAT_INDEX"
+				NUM 1
+SET
+	GBL "STRING.GET_LINES"
+	FUN 2
+		LEN
+			ARG 0
+			VAR "SOURCE_LENGTH"
+		SET
+			ARG 1
+			ARR
+		SET
+			VAR "LINE"
+			ARR
+		LOOP
+			CMP "="
+				VAR "SOURCE_INDEX"
+				VAR "SOURCE_LENGTH"
+				BRK
+			CMP "="
+				ARG 0
+					VAR "SOURCE_INDEX"
+				NUM 10
+				SUB
+					LEN
+						ARG 1
+						VAR "CURRENT_LINE_COUNT"
+					ARIT "+"
+						VAR "CURRENT_LINE_COUNT"
+						NUM 1
+						VAR "LINE_COUNT"
+					RES
+						ARG 1
+						VAR "LINE_COUNT"
+					SET
+						ARG 1
+							VAR "CURRENT_LINE_COUNT"
+						VAR "LINE"
+					SET
+						VAR "LINE"
+						ARR
+				SUB
+					LEN
+						VAR "LINE"
+						VAR "CURRENT_LINE_LENGTH"
+					ARIT "+"
+						VAR "CURRENT_LINE_LENGTH"
+						NUM 1
+						VAR "LINE_LENGTH"
+					RES
+						VAR "LINE"
+						VAR "LINE_LENGTH"
+					SET
+						VAR "LINE"
+							VAR "CURRENT_LINE_LENGTH"
+						ARG 0
+							VAR "SOURCE_INDEX"
+			ARIT "+"
+				VAR "SOURCE_INDEX"
+				NUM 1
+		LEN
+			VAR "LINE"
+			VAR "LINE_LENGTH"
+		CMP "!"
+			VAR "LINE_LENGTH"
+			NUM 0
+			SUB
+				LEN
+					ARG 1
+					VAR "CURRENT_LINE_COUNT"
+				ARIT "+"
+					VAR "CURRENT_LINE_COUNT"
+					NUM 1
+					VAR "LINE_COUNT"
+				RES
+					ARG 1
+					VAR "LINE_COUNT"
+				SET
+					ARG 1
+						VAR "CURRENT_LINE_COUNT"
+					VAR "LINE"
+SET
+	GBL "STRING.REPEAT"
+	FUN 3
+		LEN
+			ARG 0
+			VAR "STRING_LENGTH"
+		ARIT "*"
+			VAR "STRING_LENGTH"
+			ARG 1
+			VAR "REPEAT_LENGTH"
+		SET
+			ARG 2
+			ARR
+		RES
+			ARG 2
+			VAR "REPEAT_LENGTH"
+		LOOP
+			CMP "="
+				VAR "INDEX"
+				VAR "REPEAT_LENGTH"
+				BRK
+			ARIT "%"
+				VAR "INDEX"
+				VAR "STRING_LENGTH"
+				VAR "SUB_INDEX"
+			SET
+				ARG 2
+					VAR "INDEX"
+				ARG 0
+					VAR "SUB_INDEX"
+			ARIT "+"
+				VAR "INDEX"
+				NUM 1
+SET
+	GBL "STRING.REPLACE"
+	FUN 3
+		

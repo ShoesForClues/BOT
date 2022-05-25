@@ -1,0 +1,208 @@
+CALL
+	GBL "BOT.REGISTER_TRANSLATE_UNIT"
+	ARR "CMP"
+	FUN 9
+		SET
+			VAR "BLOCK"
+			ARG 0
+		SET
+			VAR "BODY"
+			ARG 1
+		SET
+			VAR "TABS"
+			ARG 8
+		CALL
+			GBL "BOT.BLOCK.GET_BLOCKS"
+			VAR "BLOCK"
+			VAR "BLOCKS"
+		CALL
+			GBL "BOT.BLOCK.GET_VALUES"
+			VAR "BLOCK"
+			VAR "VALUES"
+		LEN
+			VAR "BLOCKS"
+			VAR "BLOCK_COUNT"
+		SET
+			VAR "VALUE_A_BLOCK"
+			VAR "BLOCKS"
+				NUM 0
+		SET
+			VAR "VALUE_B_BLOCK"
+			VAR "BLOCKS"
+				NUM 1
+		SET
+			VAR "PASS_BLOCK"
+			VAR "BLOCKS"
+				NUM 2
+		SET
+			VAR "FAIL_BLOCK"
+			VAR "BLOCKS"
+				NUM 3
+		CALL
+			GBL "STRING.REPEAT"
+			ARR "	"
+			VAR "TABS"
+			VAR "TAB_STRING"
+		CALL
+			GBL "ARRAY.EXTEND"
+			VAR "BODY"
+			VAR "TAB_STRING"
+		CALL
+			GBL "ARRAY.EXTEND"
+			VAR "BODY"
+			ARR "if "
+		CALL
+			GBL "BOT.TRANSLATE"
+			VAR "VALUE_A_BLOCK"
+			ARG 1
+			ARG 2
+			ARG 3
+			ARG 4
+			ARG 5
+			ARG 6
+			ARG 7
+			ARG 8
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR "="
+			VAR "EQUAL"
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR "!"
+			VAR "NOT_EQUAL"
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR "<"
+			VAR "LESS"
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR "<="
+			VAR "LESS_OR_EQUAL"
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR ">"
+			VAR "GREATER"
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR ">="
+			VAR "GREATER_OR_EQUAL"
+		CMP "="
+			VAR "EQUAL"
+			NUM 1
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				ARR "=="
+		CMP "="
+			VAR "NOT_EQUAL"
+			NUM 1
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				ARR "~="
+		CMP "="
+			VAR "LESS"
+			NUM 1
+			CALL
+				GBL "ARRAY.ADD"
+				VAR "BODY"
+				NUM "<"
+		CMP "="
+			VAR "LESS_OR_EQUAL"
+			NUM 1
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				ARR "<="
+		CMP "="
+			VAR "GREATER"
+			NUM 1
+			CALL
+				GBL "ARRAY.ADD"
+				VAR "BODY"
+				NUM ">"
+		CMP "="
+			VAR "GREATER_OR_EQUAL"
+			NUM 1
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				ARR ">="
+		CALL
+			GBL "BOT.TRANSLATE"
+			VAR "VALUE_B_BLOCK"
+			ARG 1
+			ARG 2
+			ARG 3
+			ARG 4
+			ARG 5
+			ARG 6
+			ARG 7
+			ARG 8
+		CALL
+			GBL "ARRAY.EXTEND"
+			VAR "BODY"
+			ARR " then"
+		CALL
+			GBL "ARRAY.EXTEND"
+			VAR "BODY"
+			GBL "STRING.NEW_LINE"
+		ARIT "+"
+			VAR "TABS"
+			NUM 1
+		CALL
+			GBL "BOT.TRANSLATE"
+			VAR "PASS_BLOCK"
+			ARG 1
+			ARG 2
+			ARG 3
+			ARG 4
+			ARG 5
+			ARG 6
+			ARG 7
+			VAR "TABS"
+		CMP ">"
+			VAR "BLOCK_COUNT"
+			NUM 3
+			SUB
+				CALL
+					GBL "ARRAY.EXTEND"
+					VAR "BODY"
+					VAR "TAB_STRING"
+				CALL
+					GBL "ARRAY.EXTEND"
+					VAR "BODY"
+					ARR "else"
+				CALL
+					GBL "ARRAY.EXTEND"
+					VAR "BODY"
+					GBL "STRING.NEW_LINE"
+				CALL
+					GBL "BOT.TRANSLATE"
+					VAR "FAIL_BLOCK"
+					ARG 1
+					ARG 2
+					ARG 3
+					ARG 4
+					ARG 5
+					ARG 6
+					ARG 7
+					VAR "TABS"
+		CALL
+			GBL "ARRAY.EXTEND"
+			VAR "BODY"
+			VAR "TAB_STRING"
+		CALL
+			GBL "ARRAY.EXTEND"
+			VAR "BODY"
+			ARR "end"
+		CALL
+			GBL "ARRAY.EXTEND"
+			VAR "BODY"
+			GBL "STRING.NEW_LINE"

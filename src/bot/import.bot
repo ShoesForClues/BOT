@@ -1,0 +1,318 @@
+SET
+	GBL "BOT.IMPORT"
+	FUN 2
+		SET
+			VAR "VALIDATE_LINE"
+			FUN 2
+				LEN
+					ARG 0
+					VAR "LINE_SIZE"
+				SET
+					ARG 1
+					NUM 1
+				LOOP
+					CMP "="
+						VAR "CHAR_INDEX"
+						VAR "LINE_SIZE"
+						BRK
+					CMP ">"
+						ARG 0
+							VAR "CHAR_INDEX"
+						NUM 32
+						CMP "<"
+							ARG 0
+								VAR "CHAR_INDEX"
+							NUM 127
+							RET
+					ARIT "+"
+						VAR "CHAR_INDEX"
+						NUM 1
+				SET
+					ARG 1
+					NUM 0
+		SET
+			VAR "PARSE_TABS"
+			FUN 2
+				SET
+					ARG 1
+					NUM 0
+				LEN
+					ARG 0
+					VAR "LINE_SIZE"
+				LOOP
+					CMP "="
+						ARG 1
+						VAR "LINE_SIZE"
+						BRK
+					CMP "!"
+						ARG 0
+							ARG 1
+						NUM "	"
+						BRK
+					ARIT "+"
+						ARG 1
+						NUM 1
+		SET
+			VAR "PARSE_CODE"
+			FUN 2
+				LEN
+					ARG 0
+					VAR "LINE_SIZE"
+				LOOP
+					CMP "="
+						VAR "START"
+						VAR "LINE_SIZE"
+						BRK
+					CMP ">="
+						ARG 0
+							VAR "START"
+						NUM "A"
+						CMP "<="
+							ARG 0
+								VAR "START"
+							NUM "Z"
+							BRK
+					ARIT "+"
+						VAR "START"
+						NUM 1
+				SET
+					VAR "END"
+					VAR "START"
+				LOOP
+					CMP "="
+						VAR "END"
+						VAR "LINE_SIZE"
+						BRK
+					CMP "<"
+						ARG 0
+							VAR "END"
+						NUM "A"
+						BRK
+					CMP ">"
+						ARG 0
+							VAR "END"
+						NUM "Z"
+						BRK
+					ARIT "+"
+						VAR "END"
+						NUM 1
+				ARIT "-"
+					VAR "END"
+					NUM 1
+				CALL
+					GBL "STRING.SUB"
+					ARG 0
+					VAR "START"
+					VAR "END"
+					VAR "CODE_STRING"
+				CALL
+					GBL "BOT.GET_CODE"
+					VAR "CODE_STRING"
+					ARG 1
+		SET
+			VAR "PARSE_STRING"
+			FUN 2
+				SET
+					ARG 1
+					NUM 0
+				LEN
+					ARG 0
+					VAR "LINE_SIZE"
+				LOOP
+					CMP "="
+						VAR "START"
+						VAR "LINE_SIZE"
+						RET
+					CMP "="
+						ARG 0
+							VAR "START"
+						NUM """
+						BRK
+					ARIT "+"
+						VAR "START"
+						NUM 1
+				ARIT "+"
+					VAR "START"
+					NUM 1
+				ARIT "-"
+					VAR "LINE_SIZE"
+					NUM 1
+					VAR "END"
+				LOOP
+					CMP "<"
+						VAR "END"
+						NUM 0
+						RET
+					CMP "="
+						ARG 0
+							VAR "END"
+						NUM """
+						BRK
+					ARIT "-"
+						VAR "END"
+						NUM 1
+				ARIT "-"
+					VAR "END"
+					NUM 1
+				CALL
+					GBL "STRING.SUB"
+					ARG 0
+					VAR "START"
+					VAR "END"
+					ARG 1
+		SET
+			VAR "PARSE_NUMBERS"
+			FUN 2
+				LEN
+					ARG 0
+					VAR "LINE_SIZE"
+				SET
+					ARG 1
+					ARR
+				LOOP
+					CMP ">="
+						VAR "CHAR_INDEX"
+						VAR "LINE_SIZE"
+						BRK
+					CMP ">="
+						ARG 0
+							VAR "CHAR_INDEX"
+						NUM "0"
+						CMP "<="
+							ARG 0
+								VAR "CHAR_INDEX"
+							NUM "9"
+							SUB
+								SET
+									VAR "START"
+									VAR "CHAR_INDEX"
+								ARIT "+"
+									VAR "CHAR_INDEX"
+									NUM 1
+								LOOP
+									CMP "="
+										VAR "CHAR_INDEX"
+										VAR "LINE_SIZE"
+										BRK
+									CMP "<"
+										ARG 0
+											VAR "CHAR_INDEX"
+										NUM "0"
+										BRK
+									CMP ">"
+										ARG 0
+											VAR "CHAR_INDEX"
+										NUM "9"
+										BRK
+									ARIT "+"
+										VAR "CHAR_INDEX"
+										NUM 1
+								ARIT "-"
+									VAR "CHAR_INDEX"
+									NUM 1
+									VAR "END"
+								CALL
+									GBL "STRING.SUB"
+									ARG 0
+									VAR "START"
+									VAR "END"
+									VAR "NUMBER_STRING"
+								CALL
+									GBL "STRING.TO_NUMBER"
+									VAR "NUMBER_STRING"
+									VAR "VALUE"
+								CALL
+									GBL "ARRAY.ADD"
+									ARG 1
+									VAR "VALUE"
+					ARIT "+"
+						VAR "CHAR_INDEX"
+						NUM 1
+		SET
+			VAR "STACK"
+			ARR
+				ARG 1
+		RES
+			VAR "STACK"
+			NUM 256
+		SET
+			VAR "STACK_POINTER"
+			NUM 0
+		CALL
+			GBL "STRING.GET_LINES"
+			ARG 0
+			VAR "LINES"
+		LEN
+			VAR "LINES"
+			VAR "LINE_COUNT"
+		LOOP
+			CMP "="
+				VAR "LINE_INDEX"
+				VAR "LINE_COUNT"
+				BRK
+			SET
+				VAR "LINE"
+				VAR "LINES"
+					VAR "LINE_INDEX"
+			CALL
+				VAR "VALIDATE_LINE"
+				VAR "LINE"
+				VAR "VALID_LINE"
+			CMP "="
+				VAR "VALID_LINE"
+				NUM 1
+				SUB
+					CALL
+						VAR "PARSE_TABS"
+						VAR "LINE"
+						VAR "TABS"
+					CALL
+						VAR "PARSE_CODE"
+						VAR "LINE"
+						VAR "CODE"
+					CALL
+						VAR "PARSE_STRING"
+						VAR "LINE"
+						VAR "VALUES"
+					TYPE "NUM"
+						VAR "VALUES"
+						CALL
+							VAR "PARSE_NUMBERS"
+							VAR "LINE"
+							VAR "VALUES"
+					CALL
+						GBL "BOT.BLOCK.NEW"
+						VAR "BLOCK"
+					CALL
+						GBL "BOT.BLOCK.SET_CODE"
+						VAR "BLOCK"
+						VAR "CODE"
+					CALL
+						GBL "BOT.BLOCK.SET_VALUES"
+						VAR "BLOCK"
+						VAR "VALUES"
+					ARIT "-"
+						VAR "TABS"
+						VAR "STACK_POINTER"
+						VAR "STACK_OFFSET"
+					CMP "<"
+						VAR "STACK_OFFSET"
+						NUM 0
+						ARIT "+"
+							VAR "STACK_POINTER"
+							VAR "STACK_OFFSET"
+					CALL
+						GBL "BOT.BLOCK.ADD_BLOCK"
+						VAR "STACK"
+							VAR "STACK_POINTER"
+						VAR "BLOCK"
+					ARIT "+"
+						VAR "STACK_POINTER"
+						NUM 1
+					SET
+						VAR "STACK"
+							VAR "STACK_POINTER"
+						VAR "BLOCK"
+			ARIT "+"
+				VAR "LINE_INDEX"
+				NUM 1

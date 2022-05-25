@@ -1,0 +1,73 @@
+SET
+	GBL "SYSTEM.PRINT"
+	FUN 1
+		INL "print(string.char(unpack(i_0)))"
+			ARG 0
+SET
+	GBL "SYSTEM.CLOCK"
+	FUN 1
+		INL "i_0=os.clock()"
+			ARG 0
+SET
+	GBL "SYSTEM.PANIC"
+	FUN 1
+		INL "error(string.char(unpack(i_0)))"
+			ARG 0
+SET
+	GBL "SYSTEM.IMPORT"
+	FUN 2
+		INL "local path=string.char(unpack(i_0))"
+			ARG 0
+		INL "local file=io.open(path,'rb')"
+		INL "i_0=file and 1 or 0"
+			VAR "FILE_EXISTS"
+		CMP "="
+			VAR "FILE_EXISTS"
+			NUM 0
+			RET
+		INL "local data=file:read('*a')"
+		INL "file:close()"
+		INL "i_0=#data"
+			VAR "DATA_SIZE"
+		SET
+			ARG 1
+			ARR
+		RES
+			ARG 1
+			VAR "DATA_SIZE"
+		LOOP
+			CMP "="
+				VAR "DATA_INDEX"
+				VAR "DATA_SIZE"
+				BRK
+			INL "i_0=data:byte(i_1+1,i_1+1)"
+				ARG 1
+					VAR "DATA_INDEX"
+				VAR "DATA_INDEX"
+			ARIT "+"
+				VAR "DATA_INDEX"
+				NUM 1
+SET
+	GBL "SYSTEM.EXPORT"
+	FUN 2
+		LEN
+			ARG 1
+			VAR "DATA_SIZE"
+		INL "local path=string.char(unpack(i_0))"
+			ARG 0
+		INL "local file=io.open(path,'wb')"
+		INL "local data={}"
+		LOOP
+			CMP "="
+				VAR "DATA_INDEX"
+				VAR "DATA_SIZE"
+				BRK
+			INL "data[i_0+1]=string.char(i_1)"
+				VAR "DATA_INDEX"
+				ARG 1
+					VAR "DATA_INDEX"
+			ARIT "+"
+				VAR "DATA_INDEX"
+				NUM 1
+		INL "file:write((table.concat)(data))"
+		INL "file:close()"
