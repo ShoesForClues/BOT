@@ -22,9 +22,6 @@ CALL
 			VAR "LOCALS"
 			ARR
 		SET
-			VAR "TEMP_COUNT"
-			NUM 0
-		SET
 			VAR "FUNCTION_BODY"
 			ARR
 		SET
@@ -118,7 +115,7 @@ CALL
 				ARG 3
 				VAR "ARGUMENT_COUNT"
 				VAR "TEMP_COUNT"
-				ARG "INLINE_COUNT"
+				VAR "INLINE_COUNT"
 				ARG 7
 				NUM 1
 			ARIT "+"

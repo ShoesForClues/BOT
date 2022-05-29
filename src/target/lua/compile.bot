@@ -16,6 +16,50 @@ SET
 				VAR "CODE"
 			ARG 1
 SET
+	GBL "BOT.GET_BODY"
+	FUN 3
+		LEN
+			ARG 0
+			VAR "BODY_COUNT"
+		LOOP
+			CMP "="
+				VAR "BODY_INDEX"
+				VAR "BODY_COUNT"
+				BRK
+			CALL
+				GBL "STRING.COMPARE"
+				ARG 0
+					VAR "BODY_INDEX"
+					NUM 0
+				ARG 1
+				VAR "MATCH"
+			CMP "="
+				VAR "MATCH"
+				NUM 1
+				SUB
+					SET
+						ARG 2
+						ARG 0
+							VAR "BODY_INDEX"
+							NUM 1
+					RET
+			ARIT "+"
+				VAR "BODY_INDEX"
+				NUM 1
+		SET
+			VAR "BODY"
+			ARR
+				ARG 1
+				ARR
+		CALL
+			GBL "ARRAY.ADD"
+			ARG 0
+			VAR "BODY"
+		SET
+			ARG 2
+			VAR "BODY"
+				NUM 1
+SET
 	GBL "BOT.TRANSLATE"
 	FUN 9
 		SET

@@ -27,6 +27,12 @@ CALL
 			ARR "	"
 			VAR "TABS"
 			VAR "TAB_STRING"
+		CMP ">"
+			VAR "BLOCK_COUNT"
+			ARG 6
+			SET
+				ARG 6
+				VAR "BLOCK_COUNT"
 		LOOP
 			CMP "="
 				VAR "BLOCK_INDEX"
