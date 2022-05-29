@@ -19,9 +19,10 @@ You can find more examples under [examples](examples).
 # Compiling the compiler
 BOT is fully self-hosting and you can recompile the compiler by running the ``make`` command in the source folder.
 # TODO
-- Implement C support
+- C support
 - Expand standard libraries
 - Wiki documentation
+- Visual editor
 # License
 This software is free to use. You can modify it and redistribute it under the terms of the 
 MIT license. Check [LICENSE](LICENSE) for further details.
