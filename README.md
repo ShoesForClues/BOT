@@ -20,7 +20,7 @@ You can find more examples under [examples](examples).
 BOT is fully self-hosting and you can recompile the compiler by running the ``make`` command in the source folder.
 # TODO
 - C support
-- Expand standard libraries
+- Standard libraries
 - Wiki documentation
 - Visual editor
 # License
