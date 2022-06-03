@@ -11,20 +11,15 @@ CALL
 		SET
 			VAR "GLOBALS"
 			ARG 3
-		LEN
-			VAR "GLOBALS"
-			VAR "GLOBAL_COUNT"
 		CALL
 			GBL "BOT.BLOCK.GET_VALUES"
 			VAR "BLOCK"
 			VAR "VALUES"
-		LEN
-			VAR "VALUES"
-			VAR "VALUE_COUNT"
 		LOOP
 			CMP "="
 				VAR "GLOBAL_INDEX"
-				VAR "GLOBAL_COUNT"
+				LEN
+					VAR "GLOBALS"
 				BRK
 			CALL
 				GBL "STRING.COMPARE"
@@ -40,23 +35,28 @@ CALL
 						VAR "GLOBAL_MATCH"
 						NUM 1
 					BRK
-			ARIT "+"
+			SET
 				VAR "GLOBAL_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "GLOBAL_INDEX"
+					NUM 1
 		CMP "="
 			VAR "GLOBAL_MATCH"
 			NUM 0
 			SUB
 				SET
 					VAR "GLOBAL_INDEX"
-					VAR "GLOBAL_COUNT"
+					LEN
+						VAR "GLOBALS"
 				CALL
 					GBL "ARRAY.ADD"
 					VAR "GLOBALS"
 					VAR "VALUES"
-		ARIT "+"
+		SET
 			VAR "GLOBAL_INDEX"
-			NUM 1
+			ARIT "+"
+				VAR "GLOBAL_INDEX"
+				NUM 1
 		CALL
 			GBL "STRING.TO_STRING"
 			VAR "GLOBAL_INDEX"
@@ -78,13 +78,11 @@ CALL
 			GBL "BOT.BLOCK.GET_BLOCKS"
 			VAR "BLOCK"
 			VAR "BLOCKS"
-		LEN
-			VAR "BLOCKS"
-			VAR "BLOCK_COUNT"
 		LOOP
 			CMP "="
 				VAR "BLOCK_INDEX"
-				VAR "BLOCK_COUNT"
+				LEN
+					VAR "BLOCKS"
 				BRK
 			SET
 				VAR "INDEX_BLOCK"
@@ -111,11 +109,12 @@ CALL
 				VAR "IS_NUM"
 				NUM 1
 				SUB
-					ARIT "+"
-						VAR "INDEX_BLOCK_VALUES"
-							NUM 0
-						NUM 1
+					SET
 						VAR "INDEX_VALUE"
+						ARIT "+"
+							VAR "INDEX_BLOCK_VALUES"
+								NUM 0
+							NUM 1
 					CALL
 						GBL "STRING.TO_STRING"
 						VAR "INDEX_VALUE"
@@ -145,6 +144,8 @@ CALL
 				GBL "ARRAY.ADD"
 				VAR "BODY"
 				NUM "]"
-			ARIT "+"
+			SET
 				VAR "BLOCK_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "BLOCK_INDEX"
+					NUM 1

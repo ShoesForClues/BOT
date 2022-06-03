@@ -18,7 +18,7 @@ SET
 	GBL "BOT.BLOCK.SET_CODE_FROM_STRING"
 	FUN 2
 		CALL
-			GBL "BOT.GET_CODE"
+			GBL "BOT.BLOCK_CODES.DECODE"
 			ARG 1
 			ARG 0
 				NUM 0
@@ -55,22 +55,22 @@ SET
 SET
 	GBL "BOT.BLOCK.ADD_VALUE"
 	FUN 2
-		LEN
-			ARG 0
-				NUM 1
-			VAR "VALUE_SIZE"
-		ARIT "+"
-			VAR "VALUE_SIZE"
-			NUM 1
-			VAR "NEW_VALUE_SIZE"
 		RES
 			ARG 0
 				NUM 1
-			VAR "NEW_VALUE_SIZE"
+			ARIT "+"
+				LEN
+					ARG 0
+						NUM 1
+				NUM 1
 		SET
 			ARG 0
 				NUM 1
-				VAR "VALUE_SIZE"
+				ARIT "-"
+					LEN
+						ARG 0
+							NUM 1
+					NUM 1
 			ARG 1
 SET
 	GBL "BOT.BLOCK.SET_BLOCKS"

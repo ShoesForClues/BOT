@@ -19,24 +19,24 @@ CALL
 			GBL "BOT.BLOCK.GET_BLOCKS"
 			VAR "BLOCK"
 			VAR "BLOCKS"
-		LEN
-			VAR "BLOCKS"
-			VAR "BLOCK_COUNT"
 		CALL
 			GBL "STRING.REPEAT"
 			ARR "	"
 			VAR "TABS"
 			VAR "TAB_STRING"
 		CMP ">"
-			VAR "BLOCK_COUNT"
+			LEN
+				VAR "BLOCKS"
 			ARG 6
 			SET
 				ARG 6
-				VAR "BLOCK_COUNT"
+				LEN
+					VAR "BLOCKS"
 		LOOP
 			CMP "="
 				VAR "BLOCK_INDEX"
-				VAR "BLOCK_COUNT"
+				LEN
+					VAR "BLOCKS"
 				BRK
 			CALL
 				GBL "ARRAY.EXTEND"
@@ -75,9 +75,11 @@ CALL
 				GBL "ARRAY.EXTEND"
 				VAR "BODY"
 				GBL "STRING.NEW_LINE"
-			ARIT "+"
+			SET
 				VAR "BLOCK_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "BLOCK_INDEX"
+					NUM 1
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
@@ -96,7 +98,8 @@ CALL
 		LOOP
 			CMP "="
 				VAR "BLOCK_INDEX"
-				VAR "BLOCK_COUNT"
+				LEN
+					VAR "BLOCKS"
 				BRK
 			CALL
 				GBL "ARRAY.EXTEND"
@@ -135,6 +138,8 @@ CALL
 				GBL "ARRAY.EXTEND"
 				VAR "BODY"
 				GBL "STRING.NEW_LINE"
-			ARIT "+"
+			SET
 				VAR "BLOCK_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "BLOCK_INDEX"
+					NUM 1

@@ -4,13 +4,11 @@ SET
 		SET
 			ARG 1
 			ARR
-		LEN
-			ARG 0
-			VAR "ARG_SIZE"
 		LOOP
 			CMP "="
 				VAR "ARG_INDEX"
-				VAR "ARG_SIZE"
+				LEN
+					ARG 0
 				BRK
 			SET
 				VAR "ARG"
@@ -26,21 +24,20 @@ SET
 					ARR
 						VAR "ARG"
 				SUB
-					LEN
-						ARG 1
-						VAR "OPTION_COUNT"
 					CMP ">"
-						VAR "OPTION_COUNT"
+						LEN
+							ARG 1
 						NUM 0
-						SUB
-							ARIT "-"
-								VAR "OPTION_COUNT"
-								NUM 1
-							CALL
-								GBL "ARRAY.ADD"
-								ARG 1
-									VAR "OPTION_COUNT"
-								VAR "ARG"
-			ARIT "+"
+						CALL
+							GBL "ARRAY.ADD"
+							ARG 1
+								ARIT "-"
+									LEN
+										ARG 1
+									NUM 1
+							VAR "ARG"
+			SET
 				VAR "ARG_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "ARG_INDEX"
+					NUM 1

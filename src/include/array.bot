@@ -1,73 +1,72 @@
 SET
 	GBL "ARRAY.COPY"
 	FUN 2
-		LEN
-			ARG 0
-			VAR "SIZE"
 		RES
 			ARG 1
-			VAR "SIZE"
+			LEN
+				ARG 0
 		LOOP
 			CMP "="
 				VAR "INDEX"
-				VAR "SIZE"
+				LEN
+					ARG 0
 				BRK
 			SET
 				ARG 1
 					VAR "INDEX"
 				ARG 0
 					VAR "INDEX"
-			ARIT "+"
+			SET
 				VAR "INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "INDEX"
+					NUM 1
 SET
 	GBL "ARRAY.ADD"
 	FUN 2
-		LEN
-			ARG 0
-			VAR "SIZE"
-		ARIT "+"
-			VAR "SIZE"
-			NUM 1
-			VAR "NEW_SIZE"
 		RES
 			ARG 0
-			VAR "NEW_SIZE"
+			ARIT "+"
+				LEN
+					ARG 0
+				NUM 1
 		SET
 			ARG 0
-				VAR "SIZE"
+				ARIT "-"
+					LEN
+						ARG 0
+					NUM 1
 			ARG 1
 SET
 	GBL "ARRAY.INSERT"
 	FUN 3
-		LEN
-			ARG 0
-			VAR "SIZE"
-		ARIT "+"
-			VAR "SIZE"
-			NUM 1
-		RES
-			ARG 0
-			VAR "SIZE"
 		SET
 			VAR "INDEX"
-			VAR "SIZE"
+			LEN
+				ARG 0
+		RES
+			ARG 0
+			ARIT "+"
+				LEN
+					ARG 0
+				NUM 1
 		LOOP
 			CMP "="
 				VAR "INDEX"
 				ARG 1
 				BRK
-			ARIT "-"
-				VAR "INDEX"
-				NUM 1
-				VAR "PREVIOUS"
 			SET
 				ARG 0
 					VAR "INDEX"
-				VAR "PREVIOUS"
-			ARIT "-"
+				ARG 0
+					ARIT "-"
+						VAR "INDEX"
+						NUM 1
+			SET
 				VAR "INDEX"
-				NUM 1
+				ARIT "-"
+					VAR "INDEX"
+					NUM 1
 		SET
 			ARG 0
 				ARG 1
@@ -75,64 +74,64 @@ SET
 SET
 	GBL "ARRAY.REMOVE"
 	FUN 2
-		LEN
-			ARG 0
-			VAR "SIZE"
-		ARIT "-"
-			VAR "SIZE"
-			NUM 1
+		SET
+			VAR "INDEX"
+			ARG 1
 		LOOP
 			CMP "="
 				VAR "INDEX"
-				VAR "SIZE"
+				ARIT "-"
+					LEN
+						ARG 0
+					NUM 1
 				BRK
-			ARIT "+"
-				VAR "INDEX"
-				NUM 1
-				VAR "NEXT"
 			SET
 				ARG 0
 					VAR "INDEX"
 				ARG 0
-					VAR "NEXT"
-			ARIT "+"
+					ARIT "+"
+						VAR "INDEX"
+						NUM 1
+			SET
 				VAR "INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "INDEX"
+					NUM 1
 		RES
 			ARG 0
-			VAR "SIZE"
+			ARIT "-"
+				LEN
+					ARG 0
+				NUM 1
 SET
 	GBL "ARRAY.EXTEND"
 	FUN 2
-		LEN
-			ARG 0
+		SET
 			VAR "SIZE_0"
-		LEN
-			ARG 1
-			VAR "SIZE_1"
-		ARIT "+"
-			VAR "SIZE_0"
-			VAR "SIZE_1"
-			VAR "SIZE_3"
+			LEN
+				ARG 0
 		RES
 			ARG 0
-			VAR "SIZE_3"
-		SET
-			VAR "INDEX_0"
-			VAR "SIZE_0"
+			ARIT "+"
+				LEN
+					ARG 0
+				LEN
+					ARG 1
 		LOOP
 			CMP "="
-				VAR "INDEX_0"
-				VAR "SIZE_3"
+				VAR "INDEX"
+				LEN
+					ARG 1
 				BRK
 			SET
 				ARG 0
-					VAR "INDEX_0"
+					ARIT "+"
+						VAR "SIZE_0"
+						VAR "INDEX"
 				ARG 1
-					VAR "INDEX_1"
-			ARIT "+"
-				VAR "INDEX_0"
-				NUM 1
-			ARIT "+"
-				VAR "INDEX_1"
-				NUM 1
+					VAR "INDEX"
+			SET
+				VAR "INDEX"
+				ARIT "+"
+					VAR "INDEX"
+					NUM 1

@@ -10,16 +10,14 @@ SET
 				SET
 					VAR "VALIDATE_TEXT"
 					FUN 2
-						LEN
-							ARG 0
-							VAR "VALUE_COUNT"
 						SET
 							ARG 1
 							NUM 0
 						LOOP
 							CMP "="
 								VAR "VALUE_INDEX"
-								VAR "VALUE_COUNT"
+								LEN
+									ARG 0
 								BRK
 							CMP "!"
 								ARG 0
@@ -41,9 +39,11 @@ SET
 											VAR "VALUE_INDEX"
 										NUM 127
 										RET
-							ARIT "+"
+							SET
 								VAR "VALUE_INDEX"
-								NUM 1
+								ARIT "+"
+									VAR "VALUE_INDEX"
+									NUM 1
 						SET
 							ARG 1
 							NUM 1
@@ -51,17 +51,16 @@ SET
 					GBL "BOT.BLOCK.GET_BLOCKS"
 					ARG 0
 					VAR "BLOCKS"
-				LEN
-					VAR "BLOCKS"
-					VAR "BLOCK_COUNT"
-				ARIT "+"
-					ARG 2
-					NUM 1
+				SET
 					VAR "NEXT_TABS"
+					ARIT "+"
+						ARG 2
+						NUM 1
 				LOOP
 					CMP "="
 						VAR "BLOCK_INDEX"
-						VAR "BLOCK_COUNT"
+						LEN
+							VAR "BLOCKS"
 						BRK
 					SET
 						VAR "BLOCK"
@@ -75,9 +74,6 @@ SET
 						GBL "BOT.BLOCK.GET_VALUES"
 						VAR "BLOCK"
 						VAR "VALUES"
-					LEN
-						VAR "VALUES"
-						VAR "VALUE_COUNT"
 					SET
 						VAR "CODE_STRING"
 						GBL "BOT.BLOCK_CODES"
@@ -92,7 +88,8 @@ SET
 						VAR "LINE"
 						VAR "CODE_STRING"
 					CMP ">"
-						VAR "VALUE_COUNT"
+						LEN
+							VAR "VALUES"
 						NUM 0
 						SUB
 							CALL
@@ -126,7 +123,8 @@ SET
 									LOOP
 										CMP "="
 											VAR "VALUE_INDEX"
-											VAR "VALUE_COUNT"
+											LEN
+												VAR "VALUES"
 											BRK
 										CALL
 											GBL "STRING.TO_STRING"
@@ -138,12 +136,15 @@ SET
 											GBL "ARRAY.EXTEND"
 											VAR "LINE"
 											VAR "VALUE_STRING"
-										ARIT "+"
+										SET
 											VAR "VALUE_INDEX"
-											NUM 1
+											ARIT "+"
+												VAR "VALUE_INDEX"
+												NUM 1
 										CMP "<"
 											VAR "VALUE_INDEX"
-											VAR "VALUE_COUNT"
+											LEN
+												VAR "VALUES"
 											CALL
 												GBL "ARRAY.ADD"
 												VAR "LINE"
@@ -162,9 +163,11 @@ SET
 						ARG 1
 						VAR "NEXT_TABS"
 						VAR "EXPORT"
-					ARIT "+"
+					SET
 						VAR "BLOCK_INDEX"
-						NUM 1
+						ARIT "+"
+							VAR "BLOCK_INDEX"
+							NUM 1
 		SET
 			ARG 1
 			ARR

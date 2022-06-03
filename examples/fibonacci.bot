@@ -2,10 +2,15 @@ SET
 	VAR 1
 	NUM 1
 LOOP
-	ARIT "+"
+	CMP ">="
 		VAR 0
-		VAR 1
+		NUM 255
+		BRK
+	SET
 		VAR 2
+		ARIT "+"
+			VAR 0
+			VAR 1
 	CALL
 		GBL "STRING.TO_STRING"
 		VAR 0
@@ -20,7 +25,3 @@ LOOP
 	SET
 		VAR 1
 		VAR 2
-	CMP "<"
-		NUM 65535
-		VAR 0
-		BRK

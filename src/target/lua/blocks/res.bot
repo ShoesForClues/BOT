@@ -15,9 +15,6 @@ CALL
 			GBL "BOT.BLOCK.GET_BLOCKS"
 			VAR "BLOCK"
 			VAR "BLOCKS"
-		LEN
-			VAR "BLOCKS"
-			VAR "BLOCK_COUNT"
 		SET
 			VAR "ARRAY_BLOCK"
 			VAR "BLOCKS"
@@ -71,11 +68,12 @@ CALL
 			VAR "IS_NUM"
 			NUM 1
 			SUB
-				ARIT "+"
-					VAR "SIZE_BLOCK_VALUES"
-						NUM 0
-					NUM 1
+				SET
 					VAR "SIZE_VALUE"
+					ARIT "+"
+						VAR "SIZE_BLOCK_VALUES"
+							NUM 0
+						NUM 1
 				CALL
 					GBL "STRING.TO_STRING"
 					VAR "SIZE_VALUE"

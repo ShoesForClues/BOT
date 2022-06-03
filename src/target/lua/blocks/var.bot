@@ -11,20 +11,15 @@ CALL
 		SET
 			VAR "LOCALS"
 			ARG 2
-		LEN
-			VAR "LOCALS"
-			VAR "LOCAL_COUNT"
 		CALL
 			GBL "BOT.BLOCK.GET_VALUES"
 			VAR "BLOCK"
 			VAR "VALUES"
-		LEN
-			VAR "VALUES"
-			VAR "VALUE_COUNT"
 		LOOP
 			CMP "="
 				VAR "LOCAL_INDEX"
-				VAR "LOCAL_COUNT"
+				LEN
+					VAR "LOCALS"
 				BRK
 			CALL
 				GBL "STRING.COMPARE"
@@ -40,16 +35,19 @@ CALL
 						VAR "LOCAL_MATCH"
 						NUM 1
 					BRK
-			ARIT "+"
+			SET
 				VAR "LOCAL_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "LOCAL_INDEX"
+					NUM 1
 		CMP "="
 			VAR "LOCAL_MATCH"
 			NUM 0
 			SUB
 				SET
 					VAR "LOCAL_INDEX"
-					VAR "LOCAL_COUNT"
+					LEN
+						VAR "LOCALS"
 				CALL
 					GBL "ARRAY.ADD"
 					VAR "LOCALS"
@@ -71,13 +69,11 @@ CALL
 			GBL "BOT.BLOCK.GET_BLOCKS"
 			VAR "BLOCK"
 			VAR "BLOCKS"
-		LEN
-			VAR "BLOCKS"
-			VAR "BLOCK_COUNT"
 		LOOP
 			CMP "="
 				VAR "BLOCK_INDEX"
-				VAR "BLOCK_COUNT"
+				LEN
+					VAR "BLOCKS"
 				BRK
 			SET
 				VAR "INDEX_BLOCK"
@@ -104,11 +100,12 @@ CALL
 				VAR "IS_NUM"
 				NUM 1
 				SUB
-					ARIT "+"
-						VAR "INDEX_BLOCK_VALUES"
-							NUM 0
-						NUM 1
+					SET
 						VAR "INDEX_VALUE"
+						ARIT "+"
+							VAR "INDEX_BLOCK_VALUES"
+								NUM 0
+							NUM 1
 					CALL
 						GBL "STRING.TO_STRING"
 						VAR "INDEX_VALUE"
@@ -138,6 +135,8 @@ CALL
 				GBL "ARRAY.ADD"
 				VAR "BODY"
 				NUM "]"
-			ARIT "+"
+			SET
 				VAR "BLOCK_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "BLOCK_INDEX"
+					NUM 1

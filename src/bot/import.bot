@@ -4,16 +4,14 @@ SET
 		SET
 			VAR "VALIDATE_LINE"
 			FUN 2
-				LEN
-					ARG 0
-					VAR "LINE_SIZE"
 				SET
 					ARG 1
 					NUM 1
 				LOOP
 					CMP "="
 						VAR "CHAR_INDEX"
-						VAR "LINE_SIZE"
+						LEN
+							ARG 0
 						BRK
 					CMP ">"
 						ARG 0
@@ -24,9 +22,11 @@ SET
 								VAR "CHAR_INDEX"
 							NUM 127
 							RET
-					ARIT "+"
+					SET
 						VAR "CHAR_INDEX"
-						NUM 1
+						ARIT "+"
+							VAR "CHAR_INDEX"
+							NUM 1
 				SET
 					ARG 1
 					NUM 0
@@ -36,32 +36,30 @@ SET
 				SET
 					ARG 1
 					NUM 0
-				LEN
-					ARG 0
-					VAR "LINE_SIZE"
 				LOOP
 					CMP "="
 						ARG 1
-						VAR "LINE_SIZE"
+						LEN
+							ARG 0
 						BRK
 					CMP "!"
 						ARG 0
 							ARG 1
 						NUM "	"
 						BRK
-					ARIT "+"
+					SET
 						ARG 1
-						NUM 1
+						ARIT "+"
+							ARG 1
+							NUM 1
 		SET
 			VAR "PARSE_CODE"
 			FUN 2
-				LEN
-					ARG 0
-					VAR "LINE_SIZE"
 				LOOP
 					CMP "="
 						VAR "START"
-						VAR "LINE_SIZE"
+						LEN
+							ARG 0
 						BRK
 					CMP ">="
 						ARG 0
@@ -72,16 +70,19 @@ SET
 								VAR "START"
 							NUM "Z"
 							BRK
-					ARIT "+"
+					SET
 						VAR "START"
-						NUM 1
+						ARIT "+"
+							VAR "START"
+							NUM 1
 				SET
 					VAR "END"
 					VAR "START"
 				LOOP
 					CMP "="
 						VAR "END"
-						VAR "LINE_SIZE"
+						LEN
+							ARG 0
 						BRK
 					CMP "<"
 						ARG 0
@@ -93,12 +94,16 @@ SET
 							VAR "END"
 						NUM "Z"
 						BRK
-					ARIT "+"
+					SET
+						VAR "END"
+						ARIT "+"
+							VAR "END"
+							NUM 1
+				SET
+					VAR "END"
+					ARIT "-"
 						VAR "END"
 						NUM 1
-				ARIT "-"
-					VAR "END"
-					NUM 1
 				CALL
 					GBL "STRING.SUB"
 					ARG 0
@@ -106,7 +111,7 @@ SET
 					VAR "END"
 					VAR "CODE_STRING"
 				CALL
-					GBL "BOT.GET_CODE"
+					GBL "BOT.BLOCK_CODES.DECODE"
 					VAR "CODE_STRING"
 					ARG 1
 		SET
@@ -115,29 +120,28 @@ SET
 				SET
 					ARG 1
 					NUM 0
-				LEN
-					ARG 0
-					VAR "LINE_SIZE"
 				LOOP
 					CMP "="
 						VAR "START"
-						VAR "LINE_SIZE"
+						LEN
+							ARG 0
 						RET
 					CMP "="
 						ARG 0
 							VAR "START"
 						NUM """
 						BRK
-					ARIT "+"
+					SET
 						VAR "START"
-						NUM 1
-				ARIT "+"
-					VAR "START"
-					NUM 1
-				ARIT "-"
-					VAR "LINE_SIZE"
-					NUM 1
+						ARIT "+"
+							VAR "START"
+							NUM 1
+				SET
 					VAR "END"
+					ARIT "-"
+						LEN
+							ARG 0
+						NUM 1
 				LOOP
 					CMP "<"
 						VAR "END"
@@ -148,31 +152,32 @@ SET
 							VAR "END"
 						NUM """
 						BRK
-					ARIT "-"
+					SET
 						VAR "END"
-						NUM 1
-				ARIT "-"
-					VAR "END"
-					NUM 1
+						ARIT "-"
+							VAR "END"
+							NUM 1
 				CALL
 					GBL "STRING.SUB"
 					ARG 0
-					VAR "START"
-					VAR "END"
+					ARIT "+"
+						VAR "START"
+						NUM 1
+					ARIT "-"
+						VAR "END"
+						NUM 1
 					ARG 1
 		SET
 			VAR "PARSE_NUMBERS"
 			FUN 2
-				LEN
-					ARG 0
-					VAR "LINE_SIZE"
 				SET
 					ARG 1
 					ARR
 				LOOP
 					CMP ">="
 						VAR "CHAR_INDEX"
-						VAR "LINE_SIZE"
+						LEN
+							ARG 0
 						BRK
 					CMP ">="
 						ARG 0
@@ -186,13 +191,16 @@ SET
 								SET
 									VAR "START"
 									VAR "CHAR_INDEX"
-								ARIT "+"
+								SET
 									VAR "CHAR_INDEX"
-									NUM 1
+									ARIT "+"
+										VAR "CHAR_INDEX"
+										NUM 1
 								LOOP
 									CMP "="
 										VAR "CHAR_INDEX"
-										VAR "LINE_SIZE"
+										LEN
+											ARG 0
 										BRK
 									CMP "<"
 										ARG 0
@@ -204,13 +212,16 @@ SET
 											VAR "CHAR_INDEX"
 										NUM "9"
 										BRK
-									ARIT "+"
+									SET
+										VAR "CHAR_INDEX"
+										ARIT "+"
+											VAR "CHAR_INDEX"
+											NUM 1
+								SET
+									VAR "END"
+									ARIT "-"
 										VAR "CHAR_INDEX"
 										NUM 1
-								ARIT "-"
-									VAR "CHAR_INDEX"
-									NUM 1
-									VAR "END"
 								CALL
 									GBL "STRING.SUB"
 									ARG 0
@@ -225,9 +236,11 @@ SET
 									GBL "ARRAY.ADD"
 									ARG 1
 									VAR "VALUE"
-					ARIT "+"
+					SET
 						VAR "CHAR_INDEX"
-						NUM 1
+						ARIT "+"
+							VAR "CHAR_INDEX"
+							NUM 1
 		SET
 			VAR "STACK"
 			ARR
@@ -242,13 +255,11 @@ SET
 			GBL "STRING.GET_LINES"
 			ARG 0
 			VAR "LINES"
-		LEN
-			VAR "LINES"
-			VAR "LINE_COUNT"
 		LOOP
 			CMP "="
 				VAR "LINE_INDEX"
-				VAR "LINE_COUNT"
+				LEN
+					VAR "LINES"
 				BRK
 			SET
 				VAR "LINE"
@@ -291,28 +302,35 @@ SET
 						GBL "BOT.BLOCK.SET_VALUES"
 						VAR "BLOCK"
 						VAR "VALUES"
-					ARIT "-"
-						VAR "TABS"
-						VAR "STACK_POINTER"
+					SET
 						VAR "STACK_OFFSET"
+						ARIT "-"
+							VAR "TABS"
+							VAR "STACK_POINTER"
 					CMP "<"
 						VAR "STACK_OFFSET"
 						NUM 0
-						ARIT "+"
+						SET
 							VAR "STACK_POINTER"
-							VAR "STACK_OFFSET"
+							ARIT "+"
+								VAR "STACK_POINTER"
+								VAR "STACK_OFFSET"
 					CALL
 						GBL "BOT.BLOCK.ADD_BLOCK"
 						VAR "STACK"
 							VAR "STACK_POINTER"
 						VAR "BLOCK"
-					ARIT "+"
+					SET
 						VAR "STACK_POINTER"
-						NUM 1
+						ARIT "+"
+							VAR "STACK_POINTER"
+							NUM 1
 					SET
 						VAR "STACK"
 							VAR "STACK_POINTER"
 						VAR "BLOCK"
-			ARIT "+"
+			SET
 				VAR "LINE_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "LINE_INDEX"
+					NUM 1

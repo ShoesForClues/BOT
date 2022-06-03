@@ -7,44 +7,52 @@ RES
 SET
 	VAR "PROGRAM"
 	ARR "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
-LEN
-	VAR "PROGRAM"
-	VAR "PROGRAM_SIZE"
 LOOP
 	CMP "="
 		VAR "PC"
-		VAR "PROGRAM_SIZE"
+		LEN
+			VAR "PROGRAM"
 		BRK
 	CMP "="
 		VAR "PROGRAM"
 			VAR "PC"
 		NUM ">"
-		ARIT "+"
+		SET
 			VAR "DC"
-			NUM 1
+			ARIT "+"
+				VAR "DC"
+				NUM 1
 	CMP "="
 		VAR "PROGRAM"
 			VAR "PC"
 		NUM "<"
-		ARIT "-"
+		SET
 			VAR "DC"
-			NUM 1
+			ARIT "-"
+				VAR "DC"
+				NUM 1
 	CMP "="
 		VAR "PROGRAM"
 			VAR "PC"
 		NUM "+"
-		ARIT "+"
+		SET
 			VAR "DATA"
 				VAR "DC"
-			NUM 1
+			ARIT "+"
+				VAR "DATA"
+					VAR "DC"
+				NUM 1
 	CMP "="
 		VAR "PROGRAM"
 			VAR "PC"
 		NUM "-"
-		ARIT "-"
+		SET
 			VAR "DATA"
 				VAR "DC"
-			NUM 1
+			ARIT "-"
+				VAR "DATA"
+					VAR "DC"
+				NUM 1
 	CMP "="
 		VAR "PROGRAM"
 			VAR "PC"
@@ -66,9 +74,11 @@ LOOP
 				SET
 					VAR "SC"
 					NUM 1
-				ARIT "+"
+				SET
 					VAR "PC"
-					NUM 1
+					ARIT "+"
+						VAR "PC"
+						NUM 1
 				LOOP
 					CMP "="
 						VAR "SC"
@@ -78,19 +88,25 @@ LOOP
 						VAR "PROGRAM"
 							VAR "PC"
 						NUM "["
-						ARIT "+"
-							VAR "SC"
-							NUM 1
+						SET
+							VAR "PC"
+							ARIT "+"
+								VAR "SC"
+								NUM 1
 					CMP "="
 						VAR "PROGRAM"
 							VAR "PC"
 						NUM "]"
-						ARIT "-"
+						SET
 							VAR "SC"
-							NUM 1
-					ARIT "+"
+							ARIT "-"
+								VAR "SC"
+								NUM 1
+					SET
 						VAR "PC"
-						NUM 1
+						ARIT "+"
+							VAR "PC"
+							NUM 1
 	CMP "="
 		VAR "PROGRAM"
 			VAR "PC"
@@ -103,9 +119,11 @@ LOOP
 				SET
 					VAR "SC"
 					NUM 1
-				ARIT "-"
+				SET
 					VAR "PC"
-					NUM 1
+					ARIT "-"
+						VAR "PC"
+						NUM 1
 				LOOP
 					CMP "="
 						VAR "SC"
@@ -115,19 +133,27 @@ LOOP
 						VAR "PROGRAM"
 							VAR "PC"
 						NUM "]"
-						ARIT "+"
+						SET
 							VAR "SC"
-							NUM 1
+							ARIT "+"
+								VAR "SC"
+								NUM 1
 					CMP "="
 						VAR "PROGRAM"
 							VAR "PC"
 						NUM "["
-						ARIT "-"
+						SET
 							VAR "SC"
-							NUM 1
-					ARIT "-"
+							ARIT "-"
+								VAR "SC"
+								NUM 1
+					SET
 						VAR "PC"
-						NUM 1
-	ARIT "+"
+						ARIT "-"
+							VAR "PC"
+							NUM 1
+	SET
 		VAR "PC"
-		NUM 1
+		ARIT "+"
+			VAR "PC"
+			NUM 1

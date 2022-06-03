@@ -21,18 +21,16 @@ SET
 		ARR "ARIT"
 		ARR "INL"
 SET
-	GBL "BOT.GET_CODE"
+	GBL "BOT.BLOCK_CODES.DECODE"
 	FUN 2
 		SET
 			ARG 1
 			NUM 0
-		LEN
-			GBL "BOT.BLOCK_CODES"
-			VAR "CODE_COUNT"
 		LOOP
 			CMP "="
 				VAR "CODE"
-				VAR "CODE_COUNT"
+				LEN
+					GBL "BOT.BLOCK_CODES"
 				BRK
 			CALL
 				GBL "STRING.COMPARE"
@@ -43,10 +41,13 @@ SET
 			CMP "="
 				VAR "MATCH"
 				NUM 1
-				BRK
-			ARIT "+"
+				SUB
+					SET
+						ARG 1
+						VAR "CODE"
+					BRK
+			SET
 				VAR "CODE"
-				NUM 1
-		SET
-			ARG 1
-			VAR "CODE"
+				ARIT "+"
+					VAR "CODE"
+					NUM 1

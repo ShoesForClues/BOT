@@ -9,13 +9,11 @@ CALL
 			GBL "BOT.BLOCK.GET_BLOCKS"
 			VAR "BLOCK"
 			VAR "BLOCKS"
-		LEN
-			VAR "BLOCKS"
-			VAR "BLOCK_COUNT"
 		LOOP
 			CMP "="
 				VAR "BLOCK_INDEX"
-				VAR "BLOCK_COUNT"
+				LEN
+					VAR "BLOCKS"
 				BRK
 			CALL
 				GBL "BOT.TRANSLATE"
@@ -29,6 +27,8 @@ CALL
 				ARG 6
 				ARG 7
 				ARG 8
-			ARIT "+"
+			SET
 				VAR "BLOCK_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "BLOCK_INDEX"
+					NUM 1

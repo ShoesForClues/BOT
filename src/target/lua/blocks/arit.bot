@@ -19,146 +19,111 @@ CALL
 			GBL "BOT.BLOCK.GET_VALUES"
 			VAR "BLOCK"
 			VAR "VALUES"
-		LEN
-			VAR "BLOCKS"
-			VAR "BLOCK_COUNT"
-		SET
-			VAR "VALUE_A_BLOCK"
-			VAR "BLOCKS"
-				NUM 0
-		SET
-			VAR "VALUE_B_BLOCK"
-			VAR "BLOCKS"
-				NUM 1
-		SET
-			VAR "ASSIGNMENT_BLOCK"
-			VAR "BLOCKS"
-				NUM 2
-		CMP "<"
-			VAR "BLOCK_COUNT"
-			NUM 3
+		CALL
+			GBL "ARRAY.ADD"
+			VAR "BODY"
+			NUM "("
+		LOOP
+			CMP "="
+				VAR "BLOCK_INDEX"
+				LEN
+					VAR "BLOCKS"
+				BRK
+			CALL
+				GBL "BOT.TRANSLATE"
+				VAR "BLOCKS"
+					VAR "BLOCK_INDEX"
+				ARG 1
+				ARG 2
+				ARG 3
+				ARG 4
+				ARG 5
+				ARG 6
+				ARG 7
+				ARG 8
 			SET
-				VAR "ASSIGNMENT_BLOCK"
-				VAR "VALUE_A_BLOCK"
+				VAR "BLOCK_INDEX"
+				ARIT "+"
+					VAR "BLOCK_INDEX"
+					NUM 1
+			CMP "<"
+				VAR "BLOCK_INDEX"
+				LEN
+					VAR "BLOCKS"
+				SUB
+					CALL
+						GBL "STRING.COMPARE"
+						VAR "VALUES"
+						ARR "+"
+						VAR "ADD"
+					CALL
+						GBL "STRING.COMPARE"
+						VAR "VALUES"
+						ARR "-"
+						VAR "SUBTRACT"
+					CALL
+						GBL "STRING.COMPARE"
+						VAR "VALUES"
+						ARR "*"
+						VAR "MULTIPLY"
+					CALL
+						GBL "STRING.COMPARE"
+						VAR "VALUES"
+						ARR "/"
+						VAR "DIVIDE"
+					CALL
+						GBL "STRING.COMPARE"
+						VAR "VALUES"
+						ARR "^"
+						VAR "POWER"
+					CALL
+						GBL "STRING.COMPARE"
+						VAR "VALUES"
+						ARR "%"
+						VAR "MODULO"
+					CMP "="
+						VAR "ADD"
+						NUM 1
+						CALL
+							GBL "ARRAY.EXTEND"
+							VAR "BODY"
+							ARR "+"
+					CMP "="
+						VAR "SUBTRACT"
+						NUM 1
+						CALL
+							GBL "ARRAY.EXTEND"
+							VAR "BODY"
+							ARR "-"
+					CMP "="
+						VAR "MULTIPLY"
+						NUM 1
+						CALL
+							GBL "ARRAY.ADD"
+							VAR "BODY"
+							NUM "*"
+					CMP "="
+						VAR "DIVIDE"
+						NUM 1
+						CALL
+							GBL "ARRAY.EXTEND"
+							VAR "BODY"
+							ARR "/"
+					CMP "="
+						VAR "POWER"
+						NUM 1
+						CALL
+							GBL "ARRAY.ADD"
+							VAR "BODY"
+							NUM "^"
+					CMP "="
+						VAR "MODULO"
+						NUM 1
+						CALL
+							GBL "ARRAY.EXTEND"
+							VAR "BODY"
+							ARR "%"
 		CALL
-			GBL "STRING.REPEAT"
-			ARR "	"
-			VAR "TABS"
-			VAR "TAB_STRING"
-		CALL
-			GBL "ARRAY.EXTEND"
+			GBL "ARRAY.ADD"
 			VAR "BODY"
-			VAR "TAB_STRING"
-		CALL
-			GBL "BOT.TRANSLATE"
-			VAR "ASSIGNMENT_BLOCK"
-			ARG 1
-			ARG 2
-			ARG 3
-			ARG 4
-			ARG 5
-			ARG 6
-			ARG 7
-			ARG 8
-		CALL
-			GBL "ARRAY.EXTEND"
-			VAR "BODY"
-			ARR "="
-		CALL
-			GBL "BOT.TRANSLATE"
-			VAR "VALUE_A_BLOCK"
-			ARG 1
-			ARG 2
-			ARG 3
-			ARG 4
-			ARG 5
-			ARG 6
-			ARG 7
-			ARG 8
-		CALL
-			GBL "STRING.COMPARE"
-			VAR "VALUES"
-			ARR "+"
-			VAR "ADD"
-		CALL
-			GBL "STRING.COMPARE"
-			VAR "VALUES"
-			ARR "-"
-			VAR "SUBTRACT"
-		CALL
-			GBL "STRING.COMPARE"
-			VAR "VALUES"
-			ARR "*"
-			VAR "MULTIPLY"
-		CALL
-			GBL "STRING.COMPARE"
-			VAR "VALUES"
-			ARR "/"
-			VAR "DIVIDE"
-		CALL
-			GBL "STRING.COMPARE"
-			VAR "VALUES"
-			ARR "^"
-			VAR "POWER"
-		CALL
-			GBL "STRING.COMPARE"
-			VAR "VALUES"
-			ARR "%"
-			VAR "MODULO"
-		CMP "="
-			VAR "ADD"
-			NUM 1
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				ARR "+"
-		CMP "="
-			VAR "SUBTRACT"
-			NUM 1
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				ARR "-"
-		CMP "="
-			VAR "MULTIPLY"
-			NUM 1
-			CALL
-				GBL "ARRAY.ADD"
-				VAR "BODY"
-				NUM "*"
-		CMP "="
-			VAR "DIVIDE"
-			NUM 1
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				ARR "/"
-		CMP "="
-			VAR "POWER"
-			NUM 1
-			CALL
-				GBL "ARRAY.ADD"
-				VAR "BODY"
-				NUM "^"
-		CMP "="
-			VAR "MODULO"
-			NUM 1
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				ARR "%"
-		CALL
-			GBL "BOT.TRANSLATE"
-			VAR "VALUE_B_BLOCK"
-			ARG 1
-			ARG 2
-			ARG 3
-			ARG 4
-			ARG 5
-			ARG 6
-			ARG 7
-			ARG 8
-		CALL
-			GBL "ARRAY.EXTEND"
-			VAR "BODY"
-			GBL "STRING.NEW_LINE"
+			NUM ")"

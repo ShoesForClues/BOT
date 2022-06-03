@@ -16,12 +16,6 @@ CALL
 			GBL "BOT.BLOCK.GET_BLOCKS"
 			VAR "BLOCK"
 			VAR "BLOCKS"
-		LEN
-			VAR "VALUES"
-			VAR "VALUE_COUNT"
-		LEN
-			VAR "BLOCKS"
-			VAR "BLOCK_COUNT"
 		CALL
 			GBL "ARRAY.ADD"
 			VAR "BODY"
@@ -29,7 +23,8 @@ CALL
 		LOOP
 			CMP "="
 				VAR "VALUE_INDEX"
-				VAR "VALUE_COUNT"
+				LEN
+					VAR "VALUES"
 				BRK
 			CALL
 				GBL "STRING.TO_STRING"
@@ -41,21 +36,26 @@ CALL
 				GBL "ARRAY.EXTEND"
 				VAR "BODY"
 				VAR "VALUE_STRING"
-			ARIT "+"
+			SET
 				VAR "VALUE_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "VALUE_INDEX"
+					NUM 1
 			CMP "<"
 				VAR "VALUE_INDEX"
-				VAR "VALUE_COUNT"
+				LEN
+					VAR "VALUES"
 				CALL
 					GBL "ARRAY.ADD"
 					VAR "BODY"
 					NUM ","
 		CMP ">"
-			VAR "VALUE_COUNT"
+			LEN
+				VAR "VALUES"
 			NUM 0
 			CMP ">"
-				VAR "BLOCK_COUNT"
+				LEN
+					VAR "BLOCKS"
 				NUM 0
 				CALL
 					GBL "ARRAY.ADD"
@@ -64,7 +64,8 @@ CALL
 		LOOP
 			CMP "="
 				VAR "BLOCK_INDEX"
-				VAR "BLOCK_COUNT"
+				LEN
+					VAR "BLOCKS"
 				BRK
 			CALL
 				GBL "BOT.TRANSLATE"
@@ -78,12 +79,15 @@ CALL
 				ARG 6
 				ARG 7
 				ARG 8
-			ARIT "+"
+			SET
 				VAR "BLOCK_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "BLOCK_INDEX"
+					NUM 1
 			CMP "<"
 				VAR "BLOCK_INDEX"
-				VAR "BLOCK_COUNT"
+				LEN
+					VAR "BLOCKS"
 				CALL
 					GBL "ARRAY.ADD"
 					VAR "BODY"

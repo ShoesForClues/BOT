@@ -19,9 +19,6 @@ CALL
 			GBL "BOT.BLOCK.GET_BLOCKS"
 			VAR "BLOCK"
 			VAR "BLOCKS"
-		LEN
-			VAR "BLOCKS"
-			VAR "BLOCK_COUNT"
 		SET
 			VAR "VALUE_BLOCK"
 			VAR "BLOCKS"
@@ -106,9 +103,6 @@ CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
 			GBL "STRING.NEW_LINE"
-		ARIT "+"
-			VAR "TABS"
-			NUM 1
 		CALL
 			GBL "BOT.TRANSLATE"
 			VAR "PASS_BLOCK"
@@ -119,9 +113,12 @@ CALL
 			ARG 5
 			ARG 6
 			ARG 7
-			VAR "TABS"
+			ARIT "+"
+				VAR "TABS"
+				NUM 1
 		CMP ">"
-			VAR "BLOCK_COUNT"
+			LEN
+				VAR "BLOCKS"
 			NUM 2
 			SUB
 				CALL
@@ -146,7 +143,9 @@ CALL
 					ARG 5
 					ARG 6
 					ARG 7
-					VAR "TABS"
+					ARIT "+"
+						VAR "TABS"
+						NUM 1
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"

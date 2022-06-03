@@ -2,17 +2,15 @@ CALL
 	GBL "ARG.PARSE_OPTIONS"
 	ARG 0
 	VAR "OPTIONS"
-LEN
-	VAR "OPTIONS"
-	VAR "OPTION_COUNT"
 CMP "="
-	VAR "OPTION_COUNT"
+	LEN
+		VAR "OPTIONS"
 	NUM 0
 	SUB
 		CALL
 			GBL "STRING.FORMAT"
 			ARR
-				NUM "BOT v10 Copyright (C) 2022 Shoelee\n"
+				NUM "BOT v11 Copyright (C) 2022 Shoelee\n"
 				NUM "Usage: bc -i <input> -c <output>\n"
 				NUM "Options:\n"
 				NUM "-i <input>  Import source.\n"
@@ -37,7 +35,8 @@ CALL
 LOOP
 	CMP "="
 		VAR "OPTION_INDEX"
-		VAR "OPTION_COUNT"
+		LEN
+			VAR "OPTIONS"
 		BRK
 	SET
 		VAR "OPTION"
@@ -128,6 +127,8 @@ LOOP
 				GBL "SYSTEM.PRINT"
 				VAR "ERROR_MESSAGE"
 			RET
-	ARIT "+"
+	SET
 		VAR "OPTION_INDEX"
-		NUM 1
+		ARIT "+"
+			VAR "OPTION_INDEX"
+			NUM 1

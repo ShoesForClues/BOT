@@ -44,15 +44,14 @@ SET
 				ARG 1
 					VAR "DATA_INDEX"
 				VAR "DATA_INDEX"
-			ARIT "+"
+			SET
 				VAR "DATA_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "DATA_INDEX"
+					NUM 1
 SET
 	GBL "SYSTEM.EXPORT"
 	FUN 2
-		LEN
-			ARG 1
-			VAR "DATA_SIZE"
 		INL "local path=string.char((unpack or table.unpack)(i_0))"
 			ARG 0
 		INL "local file=io.open(path,'wb')"
@@ -60,14 +59,17 @@ SET
 		LOOP
 			CMP "="
 				VAR "DATA_INDEX"
-				VAR "DATA_SIZE"
+				LEN
+					ARG 1
 				BRK
 			INL "data[i_0+1]=string.char(i_1)"
 				VAR "DATA_INDEX"
 				ARG 1
 					VAR "DATA_INDEX"
-			ARIT "+"
+			SET
 				VAR "DATA_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "DATA_INDEX"
+					NUM 1
 		INL "file:write((table.concat)(data))"
 		INL "file:close()"

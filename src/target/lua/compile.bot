@@ -8,7 +8,7 @@ SET
 	GBL "BOT.REGISTER_TRANSLATE_UNIT"
 	FUN 2
 		CALL
-			GBL "BOT.GET_CODE"
+			GBL "BOT.BLOCK_CODES.DECODE"
 			ARG 0
 			VAR "CODE"
 		SET
@@ -18,13 +18,11 @@ SET
 SET
 	GBL "BOT.GET_BODY"
 	FUN 3
-		LEN
-			ARG 0
-			VAR "BODY_COUNT"
 		LOOP
 			CMP "="
 				VAR "BODY_INDEX"
-				VAR "BODY_COUNT"
+				LEN
+					ARG 0
 				BRK
 			CALL
 				GBL "STRING.COMPARE"
@@ -43,9 +41,11 @@ SET
 							VAR "BODY_INDEX"
 							NUM 1
 					RET
-			ARIT "+"
+			SET
 				VAR "BODY_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "BODY_INDEX"
+					NUM 1
 		SET
 			VAR "BODY"
 			ARR
@@ -108,25 +108,21 @@ SET
 			NUM 0
 			VAR "FUNCTIONS"
 			NUM 0
-		LEN
-			VAR "GLOBALS"
-			VAR "GLOBAL_COUNT"
 		LOOP
 			CMP "="
 				VAR "GLOBAL_INDEX"
-				VAR "GLOBAL_COUNT"
+				LEN
+					VAR "GLOBALS"
 				BRK
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "BODY"
 				ARR "g_["
-			ARIT "+"
-				VAR "GLOBAL_INDEX"
-				NUM 1
-				VAR "GLOBAL_ID"
 			CALL
 				GBL "STRING.TO_STRING"
-				VAR "GLOBAL_ID"
+				ARIT "+"
+					VAR "GLOBAL_INDEX"
+					NUM 1
 				NUM 10
 				VAR "GLOBAL_ID_STRING"
 			CALL
@@ -141,25 +137,27 @@ SET
 				GBL "ARRAY.EXTEND"
 				VAR "BODY"
 				GBL "STRING.NEW_LINE"
-			ARIT "+"
+			SET
 				VAR "GLOBAL_INDEX"
-				NUM 1
-		LEN
-			VAR "FUNCTIONS"
-			VAR "FUNCTION_COUNT"
+				ARIT "+"
+					VAR "GLOBAL_INDEX"
+					NUM 1
 		LOOP
 			CMP "="
 				VAR "FUNCTION_INDEX"
-				VAR "FUNCTION_COUNT"
+				LEN
+					VAR "FUNCTIONS"
 				BRK
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "BODY"
 				VAR "FUNCTIONS"
 					VAR "FUNCTION_INDEX"
-			ARIT "+"
+			SET
 				VAR "FUNCTION_INDEX"
-				NUM 1
+				ARIT "+"
+					VAR "FUNCTION_INDEX"
+					NUM 1
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
