@@ -242,6 +242,50 @@ SET
 							VAR "CHAR_INDEX"
 							NUM 1
 		SET
+			VAR "PARSE_COMMENT"
+			FUN 2
+				SET
+					VAR "CHAR_INDEX"
+					ARIT "-"
+						LEN
+							ARG 0
+						NUM 1
+				SET
+					ARG 1
+					ARR
+				LOOP
+					CMP "<"
+						VAR "CHAR_INDEX"
+						NUM 0
+						BRK
+					CMP "="
+						ARG 0
+							VAR "CHAR_INDEX"
+						NUM """
+						BRK
+					CMP "="
+						ARG 0
+							VAR "CHAR_INDEX"
+						NUM ";"
+						SUB
+							CALL
+								GBL "STRING.SUB"
+								ARG 0
+								ARIT "+"
+									VAR "CHAR_INDEX"
+									NUM 1
+								ARIT "-"
+									LEN
+										ARG 0
+									NUM 1
+								ARG 1
+							BRK
+					SET
+						VAR "CHAR_INDEX"
+						ARIT "-"
+							VAR "CHAR_INDEX"
+							NUM 1
+		SET
 			VAR "STACK"
 			ARR
 				ARG 1
@@ -292,6 +336,10 @@ SET
 							VAR "LINE"
 							VAR "VALUES"
 					CALL
+						VAR "PARSE_COMMENT"
+						VAR "LINE"
+						VAR "COMMENT"
+					CALL
 						GBL "BOT.BLOCK.NEW"
 						VAR "BLOCK"
 					CALL
@@ -302,6 +350,10 @@ SET
 						GBL "BOT.BLOCK.SET_VALUES"
 						VAR "BLOCK"
 						VAR "VALUES"
+					CALL
+						GBL "BOT.BLOCK.SET_COMMENT"
+						VAR "BLOCK"
+						VAR "COMMENT"
 					SET
 						VAR "STACK_OFFSET"
 						ARIT "-"

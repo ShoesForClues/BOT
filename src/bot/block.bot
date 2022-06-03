@@ -4,9 +4,10 @@ SET
 		SET
 			ARG 0
 			ARR
-				NUM 0
-				ARR
-				ARR
+				NUM 0 ;CODE
+				ARR   ;VALUES
+				ARR   ;BLOCKS
+				ARR   ;COMMENT
 SET
 	GBL "BOT.BLOCK.SET_CODE"
 	FUN 2
@@ -95,3 +96,17 @@ SET
 			ARG 0
 				NUM 2
 			ARG 1
+SET
+	GBL "BOT.BLOCK.SET_COMMENT"
+	FUN 2
+		SET
+			ARG 0
+				NUM 3
+			ARG 1
+SET
+	GBL "BOT.BLOCK.GET_COMMENT"
+	FUN 2
+		SET
+			ARG 1
+			ARG 0
+				NUM 3

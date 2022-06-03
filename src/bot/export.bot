@@ -74,6 +74,10 @@ SET
 						GBL "BOT.BLOCK.GET_VALUES"
 						VAR "BLOCK"
 						VAR "VALUES"
+					CALL
+						GBL "BOT.BLOCK.GET_COMMENT"
+						VAR "BLOCK"
+						VAR "COMMENT"
 					SET
 						VAR "CODE_STRING"
 						GBL "BOT.BLOCK_CODES"
@@ -149,6 +153,19 @@ SET
 												GBL "ARRAY.ADD"
 												VAR "LINE"
 												NUM " "
+					CMP ">"
+						LEN
+							VAR "COMMENT"
+						NUM 0
+						SUB
+							CALL
+								GBL "ARRAY.EXTEND"
+								VAR "LINE"
+								ARR " ;"
+							CALL
+								GBL "ARRAY.EXTEND"
+								VAR "LINE"
+								VAR "COMMENT"
 					CALL
 						GBL "ARRAY.EXTEND"
 						VAR "LINE"
