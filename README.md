@@ -6,11 +6,11 @@ CALL
 	GBL "SYSTEM.PRINT" ;Make sure to include the system library
 	ARR "Hello World!"
 ```
-To compile run ``lua bc.lua -i system.bot -i hello.bot -c hello.lua``
-
 You can find more examples under [examples](examples).
 # Compiling the compiler
 BOT is fully self-hosting and you can recompile the compiler by running the ``make`` command in the source folder.
+# Documentation
+For documentation look into the [wiki](https://github.com/ShoesForClues/BOT/wiki/Getting-Started).
 # TODO
 - C support
 - Standard libraries
