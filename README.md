@@ -1,19 +1,12 @@
 # BOT
 BOT (Block Operation Tree) is a minimal dynamically-typed programming language that compiles to Lua and other languages.
-# Example code
+# Hello World
 ```
-NULL "NULL blocks are ignored and can be used as comments."
-SET
-	GBL "PRINT"
-	FUN 1
-		NULL "INL (inline) blocks can be used to insert native code."
-		INL "print(string.char(unpack(i_0)))"
-			ARG 0
 CALL
-	GBL "PRINT"
+	GBL "SYSTEM.PRINT" ;Make sure to include the system library
 	ARR "Hello World!"
 ```
-To compile run ``lua bc.lua -i example.bot -c example.lua``
+To compile run ``lua bc.lua -i system.bot -i hello.bot -c hello.lua``
 
 You can find more examples under [examples](examples).
 # Compiling the compiler
