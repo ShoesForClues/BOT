@@ -936,6 +936,9 @@ f_[41]=function(a_0,a_1)
 		if v_0>=#a_0 then
 			break
 		end
+		if a_0[v_0+1]==59 then
+			break
+		end
 		if a_0[v_0+1]>=48 then
 			if a_0[v_0+1]<=57 then
 				v_1=v_0

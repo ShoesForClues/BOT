@@ -179,6 +179,11 @@ SET
 						LEN
 							ARG 0
 						BRK
+					CMP "="
+						ARG 0
+							VAR "CHAR_INDEX"
+						NUM ";"
+						BRK
 					CMP ">="
 						ARG 0
 							VAR "CHAR_INDEX"
