@@ -10,7 +10,7 @@ You can find more examples under [examples](examples).
 # Compiling the compiler
 BOT is fully self-hosting and you can recompile the compiler by running the ``make`` command in the source folder.
 # Documentation
-For documentation look into the [wiki](https://github.com/ShoesForClues/BOT/wiki/Getting-Started).
+For documentation look into the [wiki](https://github.com/ShoesForClues/BOT/wiki).
 # TODO
 - C support
 - Standard libraries
