@@ -102,42 +102,72 @@ CALL
 					VAR "BLOCKS"
 				BRK
 			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				VAR "TAB_STRING"
-			CALL
-				GBL "BOT.TRANSLATE"
+				GBL "BOT.BLOCK.GET_CODE_STRING"
 				VAR "BLOCKS"
 					VAR "BLOCK_INDEX"
-				ARG 1
-				ARG 2
-				ARG 3
-				ARG 4
-				ARG 5
-				ARG 6
-				ARG 7
-				ARG 8
+				VAR "BLOCK_CODE_STRING"
 			CALL
-				GBL "ARRAY.ADD"
-				VAR "BODY"
-				NUM "="
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				ARR "i_"
-			CALL
-				GBL "STRING.TO_STRING"
-				VAR "BLOCK_INDEX"
-				NUM 10
-				VAR "BLOCK_ID_STRING"
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				VAR "BLOCK_ID_STRING"
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				GBL "STRING.NEW_LINE"
+				GBL "STRING.COMPARE"
+				VAR "BLOCK_CODE_STRING"
+				ARR "VAR"
+				VAR "IS_VARIABLE"
+			CMP "="
+				VAR "IS_VARIABLE"
+				NUM 0
+				CALL
+					GBL "STRING.COMPARE"
+					VAR "BLOCK_CODE_STRING"
+					ARR "GBL"
+					VAR "IS_VARIABLE"
+			CMP "="
+				VAR "IS_VARIABLE"
+				NUM 0
+				CALL
+					GBL "STRING.COMPARE"
+					VAR "BLOCK_CODE_STRING"
+					ARR "ARG"
+					VAR "IS_VARIABLE"
+			CMP "="
+				VAR "IS_VARIABLE"
+				NUM 1
+				SUB
+					CALL
+						GBL "ARRAY.EXTEND"
+						VAR "BODY"
+						VAR "TAB_STRING"
+					CALL
+						GBL "BOT.TRANSLATE"
+						VAR "BLOCKS"
+							VAR "BLOCK_INDEX"
+						ARG 1
+						ARG 2
+						ARG 3
+						ARG 4
+						ARG 5
+						ARG 6
+						ARG 7
+						ARG 8
+					CALL
+						GBL "ARRAY.ADD"
+						VAR "BODY"
+						NUM "="
+					CALL
+						GBL "ARRAY.EXTEND"
+						VAR "BODY"
+						ARR "i_"
+					CALL
+						GBL "STRING.TO_STRING"
+						VAR "BLOCK_INDEX"
+						NUM 10
+						VAR "BLOCK_ID_STRING"
+					CALL
+						GBL "ARRAY.EXTEND"
+						VAR "BODY"
+						VAR "BLOCK_ID_STRING"
+					CALL
+						GBL "ARRAY.EXTEND"
+						VAR "BODY"
+						GBL "STRING.NEW_LINE"
 			SET
 				VAR "BLOCK_INDEX"
 				ARIT "+"
