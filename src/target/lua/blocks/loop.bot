@@ -1,5 +1,5 @@
 CALL
-	GBL "BOT.REGISTER_TRANSLATE_UNIT"
+	GBL "BOT.SET_TRANSLATE_UNIT"
 	ARR "LOOP"
 	FUN 9
 		SET
@@ -21,9 +21,36 @@ CALL
 			VAR "BODY"
 			VAR "TAB_STRING"
 		CALL
-			GBL "ARRAY.EXTEND"
-			VAR "BODY"
-			ARR "while true do"
+			GBL "BOT.BLOCK.GET_VALUES"
+			VAR "BLOCK"
+			VAR "VALUES"
+		CMP "="
+			LEN
+				VAR "VALUES"
+			NUM 0
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				ARR "while true do"
+			SUB
+				CALL
+					GBL "ARRAY.EXTEND"
+					VAR "BODY"
+					ARR "for i=1,"
+				CALL
+					GBL "STRING.TO_STRING"
+					VAR "VALUES"
+						NUM 0
+					NUM 10
+					VAR "FOR_STRING"
+				CALL
+					GBL "ARRAY.EXTEND"
+					VAR "BODY"
+					VAR "FOR_STRING"
+				CALL
+					GBL "ARRAY.EXTEND"
+					VAR "BODY"
+					ARR " do"
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"

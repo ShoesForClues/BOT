@@ -1,7 +1,7 @@
 BC     = lua ../bin/bc.lua
 TARGET = lua
 
-bc.lua: bot.bot target.bot
+bc.$(TARGET): bot.bot target.bot
 	$(BC) \
 	-i include/system.bot \
 	-i include/array.bot \
@@ -10,7 +10,7 @@ bc.lua: bot.bot target.bot
 	-i target.bot \
 	-i arg.bot \
 	-i main.bot \
-	-c bc.lua
+	-c bc.$(TARGET)
 
 bot.bot:
 	$(BC) \
@@ -48,4 +48,4 @@ target.bot:
 clean:
 	rm -f bot.bot
 	rm -f target.bot
-	rm -f bc.lua
+	rm -f bc.$(TARGET)
