@@ -1,4 +1,6 @@
 # BOT
+![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green.svg) ![VERSION](https://img.shields.io/badge/VERSION-11-blue)
+
 BOT (Block Operation Tree) is a minimal dynamically-typed programming language that compiles to Lua and other languages.
 # Hello World
 ```
