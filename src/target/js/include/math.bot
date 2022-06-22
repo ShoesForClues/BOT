@@ -1,90 +1,90 @@
-INL "i_0=math.pi"
+INL "i_0=Math.PI"
 	GBL "MATH.PI"
-INL "i_0=math.huge"
+INL "i_0=Number.MAX_VALUE"
 	GBL "MATH.HUGE"
 SET
 	GBL "MATH.FLOOR"
 	FUN 2
-		INL "i_1=math.floor(i_0)"
+		INL "i_1=Math.floor(i_0);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.CEIL"
 	FUN 2
-		INL "i_1=math.ceil(i_0)"
+		INL "i_1=Math.ceil(i_0);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.SIGN"
 	FUN 2
-		INL "i_1=math.sign(i_0)"
+		INL "i_1=Math.sign(i_0);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.ABS"
 	FUN 2
-		INL "i_1=math.abs(i_0)"
+		INL "i_1=Math.abs(i_0);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.MIN"
 	FUN 3
-		INL "i_2=math.min(i_0,i_1)"
+		INL "i_2=Math.min(i_0,i_1);"
 			ARG 0
 			ARG 1
 			ARG 2
 SET
 	GBL "MATH.MAX"
 	FUN 3
-		INL "i_2=math.max(i_0,i_1)"
+		INL "i_2=Math.max(i_0,i_1);"
 			ARG 0
 			ARG 1
 			ARG 2
 SET
 	GBL "MATH.SQRT"
 	FUN 2
-		INL "i_1=math.sqrt(i_0)"
+		INL "i_1=Math.sqrt(i_0);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.SIN"
 	FUN 2
-		INL "i_1=math.sin(i_0)"
+		INL "i_1=Math.sin(i_0);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.COS"
 	FUN 2
-		INL "i_1=math.cos(i_0)"
+		INL "i_1=Math.cos(i_0);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.TAN"
 	FUN 2
-		INL "i_1=math.tan(i_0)"
+		INL "i_1=Math.tan(i_0);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.ATAN"
 	FUN 2
-		INL "i_1=math.atan(i_0)"
+		INL "i_1=Math.atan(i_0);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.RAD"
 	FUN 2
-		INL "i_1=math.rad(i_0)"
+		INL "i_1=i_0*(Math.PI/180);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.DEG"
 	FUN 2
-		INL "i_1=math.deg(i_0)"
+		INL "i_1=i_0*(180/Math.PI);"
 			ARG 0
 			ARG 1
 SET
 	GBL "MATH.RANDOM"
 	FUN 2
-		INL "i_1=math.random(0,i_0)"
+		INL "i_1=Math.floor(Math.random()*(i_0));"
 			ARG 0
 			ARG 1

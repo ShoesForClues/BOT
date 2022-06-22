@@ -1,6 +1,6 @@
 CALL
 	GBL "BOT.SET_TRANSLATE_UNIT"
-	ARR "TYPE"
+	ARR "CMP"
 	FUN 9
 		SET
 			VAR "BLOCK"
@@ -12,29 +12,33 @@ CALL
 			VAR "TABS"
 			ARG 8
 		CALL
-			GBL "BOT.BLOCK.GET_VALUES"
-			VAR "BLOCK"
-			VAR "VALUES"
-		CALL
 			GBL "BOT.BLOCK.GET_BLOCKS"
 			VAR "BLOCK"
 			VAR "BLOCKS"
+		CALL
+			GBL "BOT.BLOCK.GET_VALUES"
+			VAR "BLOCK"
+			VAR "VALUES"
 		SET
-			VAR "VALUE_BLOCK"
+			VAR "VALUE_A_BLOCK"
 			VAR "BLOCKS"
 				NUM 0
 		SET
-			VAR "PASS_BLOCK"
+			VAR "VALUE_B_BLOCK"
 			VAR "BLOCKS"
 				NUM 1
+		SET
+			VAR "PASS_BLOCK"
+			VAR "BLOCKS"
+				NUM 2
 		CMP ">"
 			LEN
 				VAR "BLOCKS"
-			NUM 2
+			NUM 3
 			SET
 				VAR "FAIL_BLOCK"
 				VAR "BLOCKS"
-					NUM 2
+					NUM 3
 		CALL
 			GBL "STRING.REPEAT"
 			ARR "	"
@@ -47,10 +51,93 @@ CALL
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
-			ARR "if type("
+			ARR "if ("
 		CALL
 			GBL "BOT.TRANSLATE"
-			VAR "VALUE_BLOCK"
+			VAR "VALUE_A_BLOCK"
+			ARG 1
+			ARG 2
+			ARG 3
+			ARG 4
+			ARG 5
+			ARG 6
+			ARG 7
+			ARG 8
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR "="
+			VAR "EQUAL"
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR "!"
+			VAR "NOT_EQUAL"
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR "<"
+			VAR "LESS"
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR "<="
+			VAR "LESS_OR_EQUAL"
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR ">"
+			VAR "GREATER"
+		CALL
+			GBL "STRING.COMPARE"
+			VAR "VALUES"
+			ARR ">="
+			VAR "GREATER_OR_EQUAL"
+		CMP "="
+			VAR "EQUAL"
+			NUM 1
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				ARR "==="
+		CMP "="
+			VAR "NOT_EQUAL"
+			NUM 1
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				ARR "!=="
+		CMP "="
+			VAR "LESS"
+			NUM 1
+			CALL
+				GBL "ARRAY.ADD"
+				VAR "BODY"
+				NUM "<"
+		CMP "="
+			VAR "LESS_OR_EQUAL"
+			NUM 1
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				ARR "<="
+		CMP "="
+			VAR "GREATER"
+			NUM 1
+			CALL
+				GBL "ARRAY.ADD"
+				VAR "BODY"
+				NUM ">"
+		CMP "="
+			VAR "GREATER_OR_EQUAL"
+			NUM 1
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				ARR ">="
+		CALL
+			GBL "BOT.TRANSLATE"
+			VAR "VALUE_B_BLOCK"
 			ARG 1
 			ARG 2
 			ARG 3
@@ -62,47 +149,7 @@ CALL
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
-			ARR ")=="
-		CALL
-			GBL "STRING.COMPARE"
-			VAR "VALUES"
-			ARR "NUM"
-			VAR "NUMBER_TYPE"
-		CALL
-			GBL "STRING.COMPARE"
-			VAR "VALUES"
-			ARR "ARR"
-			VAR "ARRAY_TYPE"
-		CALL
-			GBL "STRING.COMPARE"
-			VAR "VALUES"
-			ARR "FUN"
-			VAR "FUNCTION_TYPE"
-		CMP "="
-			VAR "NUMBER_TYPE"
-			NUM 1
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				ARR ""number""
-		CMP "="
-			VAR "ARRAY_TYPE"
-			NUM 1
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				ARR ""table""
-		CMP "="
-			VAR "FUNCTION_TYPE"
-			NUM 1
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				ARR ""function""
-		CALL
-			GBL "ARRAY.EXTEND"
-			VAR "BODY"
-			ARR " then"
+			ARR ") {"
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
@@ -123,7 +170,7 @@ CALL
 		CMP ">"
 			LEN
 				VAR "BLOCKS"
-			NUM 2
+			NUM 3
 			SUB
 				CALL
 					GBL "ARRAY.EXTEND"
@@ -132,7 +179,7 @@ CALL
 				CALL
 					GBL "ARRAY.EXTEND"
 					VAR "BODY"
-					ARR "else"
+					ARR "} else {"
 				CALL
 					GBL "ARRAY.EXTEND"
 					VAR "BODY"
@@ -157,7 +204,7 @@ CALL
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
-			ARR "end"
+			ARR "}"
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"

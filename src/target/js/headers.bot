@@ -1,0 +1,16 @@
+CALL
+	GBL "STRING.FORMAT"
+	ARR
+		NUM "//Compiled from BOT\n"
+		NUM "const fs=require("fs");\n"
+	GBL "BOT.HEADER"
+CALL
+	GBL "STRING.FORMAT"
+	ARR
+		NUM "let arg=[];\n"
+		NUM "for (let i=2; i<process.argv.length; i++) {\n"
+		NUM "	arg[i-2]=[...Buffer.from(process.argv[i])];\n"
+		NUM "}\n"
+		NUM "arg.length=process.argv.length-2;\n"
+		NUM "f_0(arg);\n"
+	GBL "BOT.FOOTER"

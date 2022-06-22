@@ -1,0 +1,113 @@
+CALL
+	GBL "BOT.SET_TRANSLATE_UNIT"
+	ARR "VAR"
+	FUN 9
+		SET
+			VAR "BLOCK"
+			ARG 0
+		SET
+			VAR "BODY"
+			ARG 1
+		SET
+			VAR "LOCALS"
+			ARG 2
+		CALL
+			GBL "BOT.BLOCK.GET_VALUES"
+			VAR "BLOCK"
+			VAR "VALUES"
+		LOOP
+			CMP "="
+				VAR "LOCAL_INDEX"
+				LEN
+					VAR "LOCALS"
+				BRK
+			CALL
+				GBL "STRING.COMPARE"
+				VAR "LOCALS"
+					VAR "LOCAL_INDEX"
+				VAR "VALUES"
+				VAR "MATCH"
+			CMP "="
+				VAR "MATCH"
+				NUM 1
+				SUB
+					SET
+						VAR "LOCAL_MATCH"
+						NUM 1
+					BRK
+			SET
+				VAR "LOCAL_INDEX"
+				ARIT "+"
+					VAR "LOCAL_INDEX"
+					NUM 1
+		CMP "="
+			VAR "LOCAL_MATCH"
+			NUM 0
+			SUB
+				SET
+					VAR "LOCAL_INDEX"
+					LEN
+						VAR "LOCALS"
+				CALL
+					GBL "ARRAY.ADD"
+					VAR "LOCALS"
+					VAR "VALUES"
+		CALL
+			GBL "STRING.TO_STRING"
+			VAR "LOCAL_INDEX"
+			NUM 10
+			VAR "LOCAL_ID_STRING"
+		CALL
+			GBL "ARRAY.EXTEND"
+			VAR "BODY"
+			ARR "v_"
+		CALL
+			GBL "ARRAY.EXTEND"
+			VAR "BODY"
+			VAR "LOCAL_ID_STRING"
+		CALL
+			GBL "BOT.BLOCK.GET_BLOCKS"
+			VAR "BLOCK"
+			VAR "BLOCKS"
+		LOOP
+			CMP "="
+				VAR "BLOCK_INDEX"
+				LEN
+					VAR "BLOCKS"
+				BRK
+			SET
+				VAR "INDEX_BLOCK"
+				VAR "BLOCKS"
+					VAR "BLOCK_INDEX"
+			CALL
+				GBL "BOT.BLOCK.GET_CODE_STRING"
+				VAR "INDEX_BLOCK"
+				VAR "INDEX_BLOCK_CODE_STRING"
+			CALL
+				GBL "BOT.BLOCK.GET_VALUES"
+				VAR "INDEX_BLOCK"
+				VAR "INDEX_BLOCK_VALUES"
+			CALL
+				GBL "ARRAY.ADD"
+				VAR "BODY"
+				NUM "["
+			CALL
+				GBL "BOT.TRANSLATE"
+				VAR "INDEX_BLOCK"
+				ARG 1
+				ARG 2
+				ARG 3
+				ARG 4
+				ARG 5
+				ARG 6
+				ARG 7
+				ARG 8
+			CALL
+				GBL "ARRAY.ADD"
+				VAR "BODY"
+				NUM "]"
+			SET
+				VAR "BLOCK_INDEX"
+				ARIT "+"
+					VAR "BLOCK_INDEX"
+					NUM 1

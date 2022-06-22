@@ -31,10 +31,14 @@ CALL
 			VAR "PASS_BLOCK"
 			VAR "BLOCKS"
 				NUM 2
-		SET
-			VAR "FAIL_BLOCK"
-			VAR "BLOCKS"
-				NUM 3
+		CMP ">"
+			LEN
+				VAR "BLOCKS"
+			NUM 3
+			SET
+				VAR "FAIL_BLOCK"
+				VAR "BLOCKS"
+					NUM 3
 		CALL
 			GBL "STRING.REPEAT"
 			ARR "	"

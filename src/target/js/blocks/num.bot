@@ -1,0 +1,43 @@
+CALL
+	GBL "BOT.SET_TRANSLATE_UNIT"
+	ARR "NUM"
+	FUN 9
+		SET
+			VAR "BLOCK"
+			ARG 0
+		SET
+			VAR "BODY"
+			ARG 1
+		CALL
+			GBL "BOT.BLOCK.GET_VALUES"
+			VAR "BLOCK"
+			VAR "VALUES"
+		LOOP
+			CMP "="
+				VAR "VALUE_INDEX"
+				LEN
+					VAR "VALUES"
+				BRK
+			CALL
+				GBL "STRING.TO_STRING"
+				VAR "VALUES"
+					VAR "VALUE_INDEX"
+				NUM 10
+				VAR "VALUE_STRING"
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				VAR "VALUE_STRING"
+			SET
+				VAR "VALUE_INDEX"
+				ARIT "+"
+					VAR "VALUE_INDEX"
+					NUM 1
+			CMP "<"
+				VAR "VALUE_INDEX"
+				LEN
+					VAR "VALUES"
+				CALL
+					GBL "ARRAY.ADD"
+					VAR "BODY"
+					NUM ","

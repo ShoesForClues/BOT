@@ -74,12 +74,10 @@ SET
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "BODY"
-				ARR "g_["
+				ARR "var g_"
 			CALL
 				GBL "STRING.TO_STRING"
-				ARIT "+"
-					VAR "GLOBAL_INDEX"
-					NUM 1
+				VAR "GLOBAL_INDEX"
 				NUM 10
 				VAR "GLOBAL_ID_STRING"
 			CALL
@@ -89,7 +87,7 @@ SET
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "BODY"
-				ARR "]=0"
+				ARR "=0;"
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "BODY"

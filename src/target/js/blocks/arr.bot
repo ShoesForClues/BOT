@@ -1,0 +1,98 @@
+CALL
+	GBL "BOT.SET_TRANSLATE_UNIT"
+	ARR "ARR"
+	FUN 9
+		SET
+			VAR "BLOCK"
+			ARG 0
+		SET
+			VAR "BODY"
+			ARG 1
+		CALL
+			GBL "BOT.BLOCK.GET_VALUES"
+			VAR "BLOCK"
+			VAR "VALUES"
+		CALL
+			GBL "BOT.BLOCK.GET_BLOCKS"
+			VAR "BLOCK"
+			VAR "BLOCKS"
+		CALL
+			GBL "ARRAY.ADD"
+			VAR "BODY"
+			NUM "["
+		LOOP
+			CMP "="
+				VAR "VALUE_INDEX"
+				LEN
+					VAR "VALUES"
+				BRK
+			CALL
+				GBL "STRING.TO_STRING"
+				VAR "VALUES"
+					VAR "VALUE_INDEX"
+				NUM 10
+				VAR "VALUE_STRING"
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				VAR "VALUE_STRING"
+			SET
+				VAR "VALUE_INDEX"
+				ARIT "+"
+					VAR "VALUE_INDEX"
+					NUM 1
+			CMP "<"
+				VAR "VALUE_INDEX"
+				LEN
+					VAR "VALUES"
+				CALL
+					GBL "ARRAY.ADD"
+					VAR "BODY"
+					NUM ","
+		CMP ">"
+			LEN
+				VAR "VALUES"
+			NUM 0
+			CMP ">"
+				LEN
+					VAR "BLOCKS"
+				NUM 0
+				CALL
+					GBL "ARRAY.ADD"
+					VAR "BODY"
+					NUM ","
+		LOOP
+			CMP "="
+				VAR "BLOCK_INDEX"
+				LEN
+					VAR "BLOCKS"
+				BRK
+			CALL
+				GBL "BOT.TRANSLATE"
+				VAR "BLOCKS"
+					VAR "BLOCK_INDEX"
+				ARG 1
+				ARG 2
+				ARG 3
+				ARG 4
+				ARG 5
+				ARG 6
+				ARG 7
+				ARG 8
+			SET
+				VAR "BLOCK_INDEX"
+				ARIT "+"
+					VAR "BLOCK_INDEX"
+					NUM 1
+			CMP "<"
+				VAR "BLOCK_INDEX"
+				LEN
+					VAR "BLOCKS"
+				CALL
+					GBL "ARRAY.ADD"
+					VAR "BODY"
+					NUM ","
+		CALL
+			GBL "ARRAY.ADD"
+			VAR "BODY"
+			NUM "]"

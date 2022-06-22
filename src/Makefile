@@ -1,16 +1,17 @@
-BC     = lua ../bin/bc.lua
-TARGET = lua
+PLATFORM = lua
+TARGET   = lua
+BC       = lua ../bin/bc-$(PLATFORM).lua
 
-bc.$(TARGET): bot.bot target.bot
+all: bot.bot target.bot
 	$(BC) \
-	-i include/system.bot \
-	-i include/array.bot \
-	-i include/string.bot \
+	-i target/$(PLATFORM)/include/system.bot \
+	-i target/$(PLATFORM)/include/array.bot \
+	-i target/$(PLATFORM)/include/string.bot \
 	-i bot.bot \
 	-i target.bot \
 	-i arg.bot \
 	-i main.bot \
-	-c bc.$(TARGET)
+	-c bc-$(TARGET).$(PLATFORM)
 
 bot.bot:
 	$(BC) \
@@ -48,4 +49,4 @@ target.bot:
 clean:
 	rm -f bot.bot
 	rm -f target.bot
-	rm -f bc.$(TARGET)
+	rm -f bc-$(TARGET).$(PLATFORM)

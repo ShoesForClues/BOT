@@ -49,6 +49,13 @@ CALL
 			VAR "VALUES"
 			ARR "%"
 			VAR "MODULO"
+		CMP "="
+			VAR "POWER"
+			NUM 1
+			CALL
+				GBL "ARRAY.EXTEND"
+				VAR "BODY"
+				ARR "Math.pow"
 		CALL
 			GBL "ARRAY.ADD"
 			VAR "BODY"
@@ -110,19 +117,19 @@ CALL
 							VAR "BODY"
 							ARR "/"
 					CMP "="
-						VAR "POWER"
-						NUM 1
-						CALL
-							GBL "ARRAY.ADD"
-							VAR "BODY"
-							NUM "^"
-					CMP "="
 						VAR "MODULO"
 						NUM 1
 						CALL
 							GBL "ARRAY.EXTEND"
 							VAR "BODY"
 							ARR "%"
+					CMP "="
+						VAR "POWER"
+						NUM 1
+						CALL
+							GBL "ARRAY.EXTEND"
+							VAR "BODY"
+							ARR ","
 		CALL
 			GBL "ARRAY.ADD"
 			VAR "BODY"

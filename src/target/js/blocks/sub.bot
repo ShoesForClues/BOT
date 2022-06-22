@@ -1,0 +1,34 @@
+CALL
+	GBL "BOT.SET_TRANSLATE_UNIT"
+	ARR "SUB"
+	FUN 9
+		SET
+			VAR "BLOCK"
+			ARG 0
+		CALL
+			GBL "BOT.BLOCK.GET_BLOCKS"
+			VAR "BLOCK"
+			VAR "BLOCKS"
+		LOOP
+			CMP "="
+				VAR "BLOCK_INDEX"
+				LEN
+					VAR "BLOCKS"
+				BRK
+			CALL
+				GBL "BOT.TRANSLATE"
+				VAR "BLOCKS"
+					VAR "BLOCK_INDEX"
+				ARG 1
+				ARG 2
+				ARG 3
+				ARG 4
+				ARG 5
+				ARG 6
+				ARG 7
+				ARG 8
+			SET
+				VAR "BLOCK_INDEX"
+				ARIT "+"
+					VAR "BLOCK_INDEX"
+					NUM 1

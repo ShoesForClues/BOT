@@ -1,0 +1,27 @@
+SET
+	GBL "SYSTEM.PRINT"
+	FUN 1
+		INL "console.log(String.fromCharCode(...i_0));"
+			ARG 0
+SET
+	GBL "SYSTEM.CLOCK"
+	FUN 1
+		INL "i_0=performance.now();"
+			ARG 0
+SET
+	GBL "SYSTEM.PANIC"
+	FUN 1
+		INL "throw String.fromCharCode(...i_0);"
+			ARG 0
+SET
+	GBL "SYSTEM.IMPORT"
+	FUN 2
+		INL "i_1=[...Buffer.from(fs.readFileSync(String.fromCharCode(...i_0),"binary"))];"
+			ARG 0
+			ARG 1
+SET
+	GBL "SYSTEM.EXPORT"
+	FUN 2
+		INL "fs.writeFileSync(String.fromCharCode(...i_0),String.fromCharCode(...i_1));"
+			ARG 0
+			ARG 1

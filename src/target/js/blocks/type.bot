@@ -47,7 +47,7 @@ CALL
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
-			ARR "if type("
+			ARR "if (typeof("
 		CALL
 			GBL "BOT.TRANSLATE"
 			VAR "VALUE_BLOCK"
@@ -62,7 +62,7 @@ CALL
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
-			ARR ")=="
+			ARR ")==="
 		CALL
 			GBL "STRING.COMPARE"
 			VAR "VALUES"
@@ -91,7 +91,7 @@ CALL
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "BODY"
-				ARR ""table""
+				ARR ""array""
 		CMP "="
 			VAR "FUNCTION_TYPE"
 			NUM 1
@@ -102,7 +102,7 @@ CALL
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
-			ARR " then"
+			ARR ") {"
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
@@ -132,7 +132,7 @@ CALL
 				CALL
 					GBL "ARRAY.EXTEND"
 					VAR "BODY"
-					ARR "else"
+					ARR "} else {"
 				CALL
 					GBL "ARRAY.EXTEND"
 					VAR "BODY"
@@ -157,7 +157,7 @@ CALL
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
-			ARR "end"
+			ARR "}"
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"

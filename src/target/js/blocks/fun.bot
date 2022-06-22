@@ -38,8 +38,10 @@ CALL
 			VAR "FUNCTION_BODY"
 		SET
 			VAR "FUNCTION_ID"
-			LEN
-				VAR "FUNCTIONS"
+			ARIT "-"
+				LEN
+					VAR "FUNCTIONS"
+				NUM 1
 		CALL
 			GBL "STRING.TO_STRING"
 			VAR "FUNCTION_ID"
@@ -48,7 +50,7 @@ CALL
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "FUNCTION_BODY"
-			ARR "f_["
+			ARR "var f_"
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "FUNCTION_BODY"
@@ -56,7 +58,7 @@ CALL
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "FUNCTION_BODY"
-			ARR "]=function("
+			ARR "=function("
 		LOOP
 			CMP "="
 				VAR "ARGUMENT_INDEX"
@@ -88,9 +90,9 @@ CALL
 					VAR "FUNCTION_BODY"
 					NUM ","
 		CALL
-			GBL "ARRAY.ADD"
+			GBL "ARRAY.EXTEND"
 			VAR "FUNCTION_BODY"
-			NUM ")"
+			ARR ") {"
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "FUNCTION_BODY"
@@ -131,7 +133,7 @@ CALL
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "FUNCTION_BODY"
-				ARR "	local v_"
+				ARR "	let v_"
 			CALL
 				GBL "STRING.TO_STRING"
 				VAR "LOCAL_INDEX"
@@ -144,7 +146,7 @@ CALL
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "FUNCTION_BODY"
-				ARR "=0"
+				ARR "=0;"
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "FUNCTION_BODY"
@@ -162,7 +164,7 @@ CALL
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "FUNCTION_BODY"
-				ARR "	local t_"
+				ARR "	let t_"
 			CALL
 				GBL "STRING.TO_STRING"
 				VAR "TEMP_INDEX"
@@ -175,7 +177,7 @@ CALL
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "FUNCTION_BODY"
-				ARR "=0"
+				ARR "=0;"
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "FUNCTION_BODY"
@@ -193,7 +195,7 @@ CALL
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "FUNCTION_BODY"
-				ARR "	local i_"
+				ARR "	let i_"
 			CALL
 				GBL "STRING.TO_STRING"
 				VAR "INLINE_INDEX"
@@ -206,7 +208,7 @@ CALL
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "FUNCTION_BODY"
-				ARR "=0"
+				ARR "=0;"
 			CALL
 				GBL "ARRAY.EXTEND"
 				VAR "FUNCTION_BODY"
@@ -265,13 +267,17 @@ CALL
 					VAR "FUNCTION_BODY"
 					NUM ","
 		CALL
+			GBL "ARRAY.ADD"
+			VAR "FUNCTION_BODY"
+			NUM ";"
+		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "FUNCTION_BODY"
 			GBL "STRING.NEW_LINE"
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "FUNCTION_BODY"
-			ARR "end"
+			ARR "};"
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "FUNCTION_BODY"
@@ -279,12 +285,8 @@ CALL
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
-			ARR "f_["
+			ARR "f_"
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
 			VAR "FUNCTION_ID_STRING"
-		CALL
-			GBL "ARRAY.EXTEND"
-			VAR "BODY"
-			ARR "]"

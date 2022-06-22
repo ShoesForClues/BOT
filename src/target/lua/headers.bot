@@ -12,4 +12,4 @@ CALL
 		NUM "	arg[i]={arg[i]:byte(1,#arg[i])}\n"
 		NUM "end\n"
 		NUM "return f_[1](arg)\n"
-	GBL "BOT.FOOTER"
+	GBL "BOT.FOOTER"  
