@@ -10,7 +10,9 @@ CALL
 ```
 You can find more examples under [examples](examples).
 # Compiling the compiler
-BOT is fully self-hosting and you can recompile the compiler by running the ``make`` command in the source folder. (Make sure you have Lua 5.1+ or Node.js installed first)
+BOT is fully self-hosting and you can recompile the compiler by running the ``make`` command in the source folder.
+
+**(Make sure you have Lua 5.1+ or Node.js installed first)**
 # Documentation
 For documentation look into the [wiki](https://github.com/ShoesForClues/BOT/wiki).
 # TODO
