@@ -10,8 +10,8 @@ CALL
 ```
 You can find more examples under [examples](examples).
 ## Supported Languages
-- Lua
-- JavaScript
+- Lua (5.1+)
+- JavaScript (ES6+)
 ## Documentation
 For documentation look into the [wiki](https://github.com/ShoesForClues/BOT/wiki).
 ## TODO
