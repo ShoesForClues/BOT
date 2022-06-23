@@ -13,7 +13,7 @@ You can find more examples under [examples](examples).
 - Lua (5.1+)
 - JavaScript (ES6+)
 ## Documentation
-For documentation look into the [wiki](https://github.com/ShoesForClues/BOT/wiki).
+Look into the [wiki](https://github.com/ShoesForClues/BOT/wiki) for more documentation.
 ## TODO
 - C support
 - Standard libraries
