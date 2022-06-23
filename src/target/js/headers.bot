@@ -2,7 +2,6 @@ CALL
 	GBL "STRING.FORMAT"
 	ARR
 		NUM "//Compiled from BOT\n"
-		NUM "const fs=require("fs");\n"
 	GBL "BOT.HEADER"
 CALL
 	GBL "STRING.FORMAT"

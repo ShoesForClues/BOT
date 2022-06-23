@@ -1,7 +1,7 @@
 CALL
-	GBL "BOT.SET_TRANSLATE_UNIT"
+	GBL "BOT.TRANSLATE.SET_UNIT"
 	ARR "RET"
-	FUN 9
+	FUN 10
 		SET
 			VAR "BLOCK"
 			ARG 0
@@ -30,40 +30,45 @@ CALL
 		CMP ">"
 			VAR "ARGUMENT_COUNT"
 			NUM 0
-			CALL
-				GBL "ARRAY.ADD"
-				VAR "BODY"
-				NUM " "
-		LOOP
-			CMP "="
-				VAR "ARGUMENT_INDEX"
-				VAR "ARGUMENT_COUNT"
-				BRK
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				ARR "a_"
-			CALL
-				GBL "STRING.TO_STRING"
-				VAR "ARGUMENT_INDEX"
-				NUM 10
-				VAR "ARGUMENT_ID_STRING"
-			CALL
-				GBL "ARRAY.EXTEND"
-				VAR "BODY"
-				VAR "ARGUMENT_ID_STRING"
-			SET
-				VAR "ARGUMENT_INDEX"
-				ARIT "+"
-					VAR "ARGUMENT_INDEX"
-					NUM 1
-			CMP "<"
-				VAR "ARGUMENT_INDEX"
-				VAR "ARGUMENT_COUNT"
+			SUB
+				CALL
+					GBL "ARRAY.EXTEND"
+					VAR "BODY"
+					ARR " ["
+				LOOP
+					CMP "="
+						VAR "ARGUMENT_INDEX"
+						VAR "ARGUMENT_COUNT"
+						BRK
+					CALL
+						GBL "ARRAY.EXTEND"
+						VAR "BODY"
+						ARR "a_"
+					CALL
+						GBL "STRING.TO_STRING"
+						VAR "ARGUMENT_INDEX"
+						NUM 10
+						VAR "ARGUMENT_ID_STRING"
+					CALL
+						GBL "ARRAY.EXTEND"
+						VAR "BODY"
+						VAR "ARGUMENT_ID_STRING"
+					SET
+						VAR "ARGUMENT_INDEX"
+						ARIT "+"
+							VAR "ARGUMENT_INDEX"
+							NUM 1
+					CMP "<"
+						VAR "ARGUMENT_INDEX"
+						VAR "ARGUMENT_COUNT"
+						CALL
+							GBL "ARRAY.ADD"
+							VAR "BODY"
+							NUM ","
 				CALL
 					GBL "ARRAY.ADD"
 					VAR "BODY"
-					NUM ","
+					NUM "]"
 		CALL
 			GBL "ARRAY.ADD"
 			VAR "BODY"

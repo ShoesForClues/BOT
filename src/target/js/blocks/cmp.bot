@@ -1,7 +1,7 @@
 CALL
-	GBL "BOT.SET_TRANSLATE_UNIT"
+	GBL "BOT.TRANSLATE.SET_UNIT"
 	ARR "CMP"
-	FUN 9
+	FUN 10
 		SET
 			VAR "BLOCK"
 			ARG 0
@@ -63,6 +63,7 @@ CALL
 			ARG 6
 			ARG 7
 			ARG 8
+			ARG 9
 		CALL
 			GBL "STRING.COMPARE"
 			VAR "VALUES"
@@ -146,6 +147,7 @@ CALL
 			ARG 6
 			ARG 7
 			ARG 8
+			ARG 9
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
@@ -167,6 +169,7 @@ CALL
 			ARIT "+"
 				VAR "TABS"
 				NUM 1
+			ARG 9
 		CMP ">"
 			LEN
 				VAR "BLOCKS"
@@ -197,6 +200,7 @@ CALL
 					ARIT "+"
 						VAR "TABS"
 						NUM 1
+					ARG 9
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"

@@ -1,7 +1,7 @@
 CALL
-	GBL "BOT.SET_TRANSLATE_UNIT"
+	GBL "BOT.TRANSLATE.SET_UNIT"
 	ARR "RES"
-	FUN 9
+	FUN 10
 		SET
 			VAR "BLOCK"
 			ARG 0
@@ -55,6 +55,7 @@ CALL
 			ARG 6
 			ARG 7
 			ARG 8
+			ARG 9
 		CALL
 			GBL "ARRAY.ADD"
 			VAR "BODY"
@@ -82,6 +83,7 @@ CALL
 			ARG 6
 			ARG 7
 			ARG 8
+			ARG 9
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
@@ -109,6 +111,7 @@ CALL
 			ARG 6
 			ARG 7
 			ARG 8
+			ARG 9
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"
@@ -144,6 +147,7 @@ CALL
 			ARG 6
 			ARG 7
 			ARG 8
+			ARG 9
 		CALL
 			GBL "ARRAY.EXTEND"
 			VAR "BODY"

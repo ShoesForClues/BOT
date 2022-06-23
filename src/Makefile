@@ -44,6 +44,7 @@ target.bot:
 	-i target/$(TARGET)/blocks/cmp.bot \
 	-i target/$(TARGET)/blocks/arit.bot \
 	-i target/$(TARGET)/blocks/inl.bot \
+	-i target/$(TARGET)/blocks/body.bot \
 	-e target.bot
 
 clean:

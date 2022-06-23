@@ -1,7 +1,7 @@
 CALL
-	GBL "BOT.SET_TRANSLATE_UNIT"
+	GBL "BOT.TRANSLATE.SET_UNIT"
 	ARR "CALL"
-	FUN 9
+	FUN 10
 		SET
 			VAR "BLOCK"
 			ARG 0
@@ -102,6 +102,7 @@ CALL
 						ARG 6
 						ARG 7
 						ARG 8
+						ARG 9
 					CALL
 						GBL "ARRAY.EXTEND"
 						VAR "BODY"
@@ -129,94 +130,100 @@ CALL
 		SET
 			VAR "TEMP_COUNT"
 			NUM 0
-		SET
-			VAR "BLOCK_INDEX"
-			NUM 1
-		LOOP
-			CMP "="
-				VAR "BLOCK_INDEX"
-				LEN
-					VAR "BLOCKS"
-				BRK
-			SET
-				VAR "ARGUMENT_BLOCK"
+		CMP ">"
+			LEN
 				VAR "BLOCKS"
-					VAR "BLOCK_INDEX"
-			CALL
-				GBL "BOT.BLOCK.GET_CODE_STRING"
-				VAR "ARGUMENT_BLOCK"
-				VAR "BLOCK_CODE_STRING"
-			CALL
-				GBL "STRING.COMPARE"
-				VAR "BLOCK_CODE_STRING"
-				ARR "VAR"
-				VAR "IS_VARIABLE"
-			CMP "="
-				VAR "IS_VARIABLE"
-				NUM 0
-				CALL
-					GBL "STRING.COMPARE"
-					VAR "BLOCK_CODE_STRING"
-					ARR "GBL"
-					VAR "IS_VARIABLE"
-			CMP "="
-				VAR "IS_VARIABLE"
-				NUM 0
-				CALL
-					GBL "STRING.COMPARE"
-					VAR "BLOCK_CODE_STRING"
-					ARR "ARG"
-					VAR "IS_VARIABLE"
-			CMP "="
-				VAR "IS_VARIABLE"
-				NUM 1
-				CALL
-					GBL "BOT.TRANSLATE"
-					VAR "ARGUMENT_BLOCK"
-					ARG 1
-					ARG 2
-					ARG 3
-					ARG 4
-					ARG 5
-					ARG 6
-					ARG 7
-					ARG 8
-				SUB
-					CALL
-						GBL "ARRAY.EXTEND"
-						VAR "BODY"
-						ARR "t_"
-					CALL
-						GBL "STRING.TO_STRING"
-						VAR "TEMP_COUNT"
-						NUM 10
-						VAR "TEMP_ID_STRING"
-					CALL
-						GBL "ARRAY.EXTEND"
-						VAR "BODY"
-						VAR "TEMP_ID_STRING"
-					SET
-						VAR "TEMP_COUNT"
-						ARIT "+"
-							VAR "TEMP_COUNT"
-							NUM 1
-			SET
-				VAR "BLOCK_INDEX"
-				ARIT "+"
+			NUM 1
+			SUB
+				SET
 					VAR "BLOCK_INDEX"
 					NUM 1
-			CMP "<"
-				VAR "BLOCK_INDEX"
-				LEN
-					VAR "BLOCKS"
+				LOOP
+					CMP "="
+						VAR "BLOCK_INDEX"
+						LEN
+							VAR "BLOCKS"
+						BRK
+					SET
+						VAR "ARGUMENT_BLOCK"
+						VAR "BLOCKS"
+							VAR "BLOCK_INDEX"
+					CALL
+						GBL "BOT.BLOCK.GET_CODE_STRING"
+						VAR "ARGUMENT_BLOCK"
+						VAR "BLOCK_CODE_STRING"
+					CALL
+						GBL "STRING.COMPARE"
+						VAR "BLOCK_CODE_STRING"
+						ARR "VAR"
+						VAR "IS_VARIABLE"
+					CMP "="
+						VAR "IS_VARIABLE"
+						NUM 0
+						CALL
+							GBL "STRING.COMPARE"
+							VAR "BLOCK_CODE_STRING"
+							ARR "GBL"
+							VAR "IS_VARIABLE"
+					CMP "="
+						VAR "IS_VARIABLE"
+						NUM 0
+						CALL
+							GBL "STRING.COMPARE"
+							VAR "BLOCK_CODE_STRING"
+							ARR "ARG"
+							VAR "IS_VARIABLE"
+					CMP "="
+						VAR "IS_VARIABLE"
+						NUM 1
+						CALL
+							GBL "BOT.TRANSLATE"
+							VAR "ARGUMENT_BLOCK"
+							ARG 1
+							ARG 2
+							ARG 3
+							ARG 4
+							ARG 5
+							ARG 6
+							ARG 7
+							ARG 8
+							ARG 9
+						SUB
+							CALL
+								GBL "ARRAY.EXTEND"
+								VAR "BODY"
+								ARR "t_"
+							CALL
+								GBL "STRING.TO_STRING"
+								VAR "TEMP_COUNT"
+								NUM 10
+								VAR "TEMP_ID_STRING"
+							CALL
+								GBL "ARRAY.EXTEND"
+								VAR "BODY"
+								VAR "TEMP_ID_STRING"
+							SET
+								VAR "TEMP_COUNT"
+								ARIT "+"
+									VAR "TEMP_COUNT"
+									NUM 1
+					SET
+						VAR "BLOCK_INDEX"
+						ARIT "+"
+							VAR "BLOCK_INDEX"
+							NUM 1
+					CMP "<"
+						VAR "BLOCK_INDEX"
+						LEN
+							VAR "BLOCKS"
+						CALL
+							GBL "ARRAY.ADD"
+							VAR "BODY"
+							NUM ","
 				CALL
 					GBL "ARRAY.ADD"
 					VAR "BODY"
-					NUM ","
-		CALL
-			GBL "ARRAY.ADD"
-			VAR "BODY"
-			NUM "="
+					NUM "="
 		CALL
 			GBL "BOT.TRANSLATE"
 			VAR "FUNCTION_BLOCK"
@@ -228,6 +235,7 @@ CALL
 			ARG 6
 			ARG 7
 			ARG 8
+			ARG 9
 		CALL
 			GBL "ARRAY.ADD"
 			VAR "BODY"
@@ -287,6 +295,7 @@ CALL
 					ARG 6
 					ARG 7
 					ARG 8
+					ARG 9
 				SUB
 					CALL
 						GBL "ARRAY.EXTEND"
