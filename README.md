@@ -18,6 +18,7 @@ For documentation look into the [wiki](https://github.com/ShoesForClues/BOT/wiki
 # TODO
 - C support
 - Standard libraries
+- Code validation
 - Wiki documentation
 - Visual editor
 - Macros (maybe?)
