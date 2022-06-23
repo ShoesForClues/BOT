@@ -10,7 +10,7 @@ CALL
 ```
 You can find more examples under [examples](examples).
 # Compiling the compiler
-BOT is fully self-hosting and you can recompile the compiler by running the ``make`` command in the source folder.
+BOT is self-hosting and you can recompile the compiler by running the ``make`` command in the source folder.
 
 **(Make sure you have Lua 5.1+ or Node.js installed first)**
 # Documentation
