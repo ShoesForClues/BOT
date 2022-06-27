@@ -81,7 +81,6 @@ CALL
 					CALL
 						GBL "STRING.TO_STRING"
 						VAR "TEMP_COUNT"
-						NUM 10
 						VAR "TEMP_ID_STRING"
 					CALL
 						GBL "ARRAY.EXTEND"
@@ -204,7 +203,6 @@ CALL
 							CALL
 								GBL "STRING.TO_STRING"
 								VAR "TEMP_COUNT"
-								NUM 10
 								VAR "TEMP_ID_STRING"
 							CALL
 								GBL "ARRAY.EXTEND"
@@ -312,7 +310,6 @@ CALL
 					CALL
 						GBL "STRING.TO_STRING"
 						VAR "TEMP_COUNT"
-						NUM 10
 						VAR "TEMP_ID_STRING"
 					CALL
 						GBL "ARRAY.EXTEND"

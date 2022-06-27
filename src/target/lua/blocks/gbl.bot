@@ -69,7 +69,6 @@ CALL
 					ARIT "+"
 						VAR "GLOBAL_INDEX"
 						NUM 1
-					NUM 10
 					VAR "GLOBAL_ID_STRING"
 				CALL
 					GBL "ARRAY.EXTEND"
@@ -88,7 +87,6 @@ CALL
 			ARIT "+"
 				VAR "GLOBAL_INDEX"
 				NUM 1
-			NUM 10
 			VAR "GLOBAL_ID_STRING"
 		CALL
 			GBL "ARRAY.EXTEND"
@@ -146,7 +144,6 @@ CALL
 					CALL
 						GBL "STRING.TO_STRING"
 						VAR "INDEX_VALUE"
-						NUM 10
 						VAR "INDEX_STRING"
 					CALL
 						GBL "ARRAY.EXTEND"

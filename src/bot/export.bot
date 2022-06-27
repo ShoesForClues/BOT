@@ -134,7 +134,6 @@ SET
 											GBL "STRING.TO_STRING"
 											VAR "VALUES"
 												VAR "VALUE_INDEX"
-											NUM 10
 											VAR "VALUE_STRING"
 										CALL
 											GBL "ARRAY.EXTEND"

@@ -10,7 +10,7 @@ CMP "="
 		CALL
 			GBL "STRING.FORMAT"
 			ARR
-				NUM "BOT v11 Copyright (C) 2022 Shoelee\n"
+				NUM "BOT v12 Copyright (C) 2022 Shoelee\n"
 				NUM "Usage: bc -i <input> -c <output>\n"
 				NUM "Options:\n"
 				NUM "-i <input>  Import source.\n"

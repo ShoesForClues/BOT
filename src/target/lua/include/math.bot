@@ -83,6 +83,12 @@ SET
 			ARG 0
 			ARG 1
 SET
+	GBL "MATH.LOG"
+	FUN 2
+		INL "i_1=math.log(i_0)"
+			ARG 0
+			ARG 1
+SET
 	GBL "MATH.RANDOM"
 	FUN 2
 		INL "i_1=math.random(0,i_0)"

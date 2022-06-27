@@ -1,7 +1,4 @@
 SET
-	GBL "STRING.BASE_LOOKUP"
-	ARR "0123456789ABCDEF"
-SET
 	GBL "STRING.NEW_LINE"
 	ARR 10
 SET
@@ -119,66 +116,211 @@ SET
 			NUM 1
 SET
 	GBL "STRING.TO_STRING"
-	FUN 3
-		CMP "<"
-			ARG 0
+	FUN 2
+		SET
 			ARG 1
-			SET
-				ARG 2
-				ARR
-					GBL "STRING.BASE_LOOKUP"
-						ARG 0
+			ARR
+		CMP "<" ;Check sign
+			ARG 0
+			NUM 0
 			SUB
-				CALL
-					GBL "STRING.TO_STRING"
-					ARIT "-"
-						ARIT "/"
-							ARG 0
-							ARG 1
-						ARIT "%"
-							ARIT "/"
-								ARG 0
-								ARG 1
-							NUM 1
-					ARG 1
-					ARG 2
-				RES
-					ARG 2
-					ARIT "+"
-						LEN
-							ARG 2
-						NUM 1
 				SET
-					ARG 2
-						ARIT "-"
-							LEN
-								ARG 2
+					VAR "SIGN"
+					NUM 1
+				SET
+					VAR "ABS"
+					ARIT "-"
+						NUM 0
+						ARG 0
+			SET
+				VAR "ABS"
+				ARG 0
+		SET
+			VAR "DIGITS"
+			NUM 1
+		LOOP ;Calculate number of digits
+			CMP "<"
+				ARIT "/"
+					VAR "ABS"
+					ARIT "^"
+						NUM 10
+						VAR "DIGITS"
+				NUM 1
+				BRK
+			SET
+				VAR "DIGITS"
+				ARIT "+"
+					VAR "DIGITS"
+					NUM 1
+		LOOP ;Calculate decimal places
+			SET
+				VAR "TEMP"
+				ARIT "+"
+					ARIT "*"
+						VAR "ABS"
+						ARIT "^"
+							NUM 10
+							VAR "DECIMALS"
+					ARIT "/"
+						NUM 1
+						NUM 2
+			SET
+				VAR "TEMP"
+				ARIT "-"
+					VAR "TEMP"
+					ARIT "%"
+						VAR "TEMP"
+						NUM 1
+			CMP "="
+				ARIT "/"
+					VAR "TEMP"
+					ARIT "^"
+						NUM 10
+						VAR "DECIMALS"
+				VAR "ABS"
+				BRK
+			SET
+				VAR "DECIMALS"
+				ARIT "+"
+					VAR "DECIMALS"
+					NUM 1
+		CMP "="
+			VAR "DECIMALS"
+			NUM 0
+			RES
+				ARG 1
+				ARIT "+"
+					VAR "SIGN"
+					VAR "DIGITS"
+			RES
+				ARG 1
+				ARIT "+"
+					VAR "SIGN"
+					VAR "DIGITS"
+					VAR "DECIMALS"
+					NUM 1 ;For decimal point
+		CMP "="
+			VAR "SIGN"
+			NUM 1
+			SUB
+				SET
+					ARG 1
+						NUM 0
+					NUM "-"
+				SET
+					VAR "CHAR_INDEX"
+					NUM 1
+		SET
+			VAR "DIGIT_INDEX"
+			NUM 1
+		LOOP
+			CMP "="
+				VAR "CHAR_INDEX"
+				LEN
+					ARG 1
+				BRK
+			SET
+				VAR "DIGIT"
+				ARIT "+"
+					ARIT "%"
+						ARIT "/"
+							VAR "ABS"
+							ARIT "^"
+								NUM 10
+								ARIT "-"
+									VAR "DIGITS"
+									VAR "DIGIT_INDEX"
+						NUM 10
+					ARIT "/"
+						NUM 1
+						NUM 100000000
+			SET
+				VAR "DIGIT"
+				ARIT "-"
+					VAR "DIGIT"
+					ARIT "%"
+						VAR "DIGIT"
+						NUM 1
+			CMP "=" ;Insert decimal point
+				VAR "DIGIT_INDEX"
+				ARIT "+"
+					VAR "DIGITS"
+					NUM 1
+				SUB
+					SET
+						ARG 1
+							VAR "CHAR_INDEX"
+						NUM "."
+					SET
+						VAR "CHAR_INDEX"
+						ARIT "+"
+							VAR "CHAR_INDEX"
 							NUM 1
-					GBL "STRING.BASE_LOOKUP"
-						ARIT "%"
-							ARG 0
-							ARG 1
+			CMP ">"
+				ARIT "+"
+					VAR "DIGIT"
+					NUM 48
+				NUM "9"
+				SET
+					ARG 1
+						VAR "CHAR_INDEX"
+					NUM "0"
+				SET
+					ARG 1
+						VAR "CHAR_INDEX"
+					ARIT "+"
+						VAR "DIGIT"
+						NUM 48 ;ASCII char 0 starts at 48
+			SET
+				VAR "DIGIT_INDEX"
+				ARIT "+"
+					VAR "DIGIT_INDEX"
+					NUM 1
+			SET
+				VAR "CHAR_INDEX"
+				ARIT "+"
+					VAR "CHAR_INDEX"
+					NUM 1
 SET
 	GBL "STRING.TO_NUMBER"
 	FUN 2
 		SET
 			ARG 1
 			NUM 0
-		LOOP
+		CMP "=" ;Parse sign
+			ARG 0
+				NUM 0
+			NUM "-"
+			SUB
+				SET
+					VAR "IS_NEGATIVE"
+					NUM 1
+				SET
+					VAR "INDEX"
+					NUM 1
+		LOOP ;Parse integer
 			CMP "="
 				VAR "INDEX"
 				LEN
 					ARG 0
 				BRK
-			SET
-				ARG 1
-				ARIT "*"
-					ARG 1
-					NUM 10
+			CMP "="
+				ARG 0
+					VAR "INDEX"
+				NUM "."
+				SUB
+					SET
+						VAR "INDEX"
+						ARIT "+"
+							VAR "INDEX"
+							NUM 1
+					BRK
 			SET
 				ARG 1
 				ARIT "+"
-					ARG 1
+					ARIT "*"
+						ARG 1
+						NUM 10
 					ARIT "-"
 						ARG 0
 							VAR "INDEX"
@@ -188,6 +330,42 @@ SET
 				ARIT "+"
 					VAR "INDEX"
 					NUM 1
+		LOOP ;Parse decimal
+			CMP ">="
+				VAR "INDEX"
+				LEN
+					ARG 0
+				BRK
+			SET
+				VAR "POINT"
+				ARIT "+"
+					VAR "POINT"
+					NUM 1
+			SET
+				ARG 1
+				ARIT "+"
+					ARG 1
+					ARIT "/"
+						ARIT "-"
+							ARG 0
+								VAR "INDEX"
+							NUM 48
+						ARIT "^"
+							NUM 10
+							VAR "POINT"
+			SET
+				VAR "INDEX"
+				ARIT "+"
+					VAR "INDEX"
+					NUM 1
+		CMP "="
+			VAR "IS_NEGATIVE"
+			NUM 1
+			SET
+				ARG 1
+				ARIT "-"
+					NUM 0
+					ARG 1
 SET
 	GBL "STRING.FIND"
 	FUN 5

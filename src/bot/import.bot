@@ -184,6 +184,16 @@ SET
 							VAR "CHAR_INDEX"
 						NUM ";"
 						BRK
+					CMP "="
+						ARG 0
+							VAR "CHAR_INDEX"
+						NUM "-"
+						SET
+							VAR "NUM_BEGIN"
+							NUM 1
+						SET
+							VAR "NUM_BEGIN"
+							NUM 0
 					CMP ">="
 						ARG 0
 							VAR "CHAR_INDEX"
@@ -192,55 +202,66 @@ SET
 							ARG 0
 								VAR "CHAR_INDEX"
 							NUM "9"
-							SUB
-								SET
-									VAR "START"
+							SET
+								VAR "NUM_BEGIN"
+								NUM 1
+					CMP "="
+						VAR "NUM_BEGIN"
+						NUM 1
+						SUB
+							SET
+								VAR "START"
+								VAR "CHAR_INDEX"
+							SET
+								VAR "CHAR_INDEX"
+								ARIT "+"
 									VAR "CHAR_INDEX"
+									NUM 1
+							LOOP
+								CMP "="
+									VAR "CHAR_INDEX"
+									LEN
+										ARG 0
+									BRK
+								CMP "!"
+									ARG 0
+										VAR "CHAR_INDEX"
+									NUM "."
+									SUB
+										CMP "<"
+											ARG 0
+												VAR "CHAR_INDEX"
+											NUM "0"
+											BRK
+										CMP ">"
+											ARG 0
+												VAR "CHAR_INDEX"
+											NUM "9"
+											BRK
 								SET
 									VAR "CHAR_INDEX"
 									ARIT "+"
 										VAR "CHAR_INDEX"
 										NUM 1
-								LOOP
-									CMP "="
-										VAR "CHAR_INDEX"
-										LEN
-											ARG 0
-										BRK
-									CMP "<"
-										ARG 0
-											VAR "CHAR_INDEX"
-										NUM "0"
-										BRK
-									CMP ">"
-										ARG 0
-											VAR "CHAR_INDEX"
-										NUM "9"
-										BRK
-									SET
-										VAR "CHAR_INDEX"
-										ARIT "+"
-											VAR "CHAR_INDEX"
-											NUM 1
-								SET
-									VAR "END"
-									ARIT "-"
-										VAR "CHAR_INDEX"
-										NUM 1
-								CALL
-									GBL "STRING.SUB"
-									ARG 0
-									VAR "START"
-									VAR "END"
-									VAR "NUMBER_STRING"
-								CALL
-									GBL "STRING.TO_NUMBER"
-									VAR "NUMBER_STRING"
-									VAR "VALUE"
-								CALL
-									GBL "ARRAY.ADD"
-									ARG 1
-									VAR "VALUE"
+							SET
+								VAR "END"
+								ARIT "-"
+									VAR "CHAR_INDEX"
+									NUM 1
+							CALL
+								GBL "STRING.SUB"
+								ARG 0
+								VAR "START"
+								VAR "END"
+								VAR "NUMBER_STRING"
+							CALL
+								GBL "STRING.TO_NUMBER"
+								VAR "NUMBER_STRING"
+								VAR "VALUE"
+							CALL
+								GBL "ARRAY.ADD"
+								ARG 1
+								VAR "VALUE"
 					SET
 						VAR "CHAR_INDEX"
 						ARIT "+"
@@ -283,7 +304,7 @@ SET
 									LEN
 										ARG 0
 									NUM 1
-								ARG 1
+								ARG 1   
 							BRK
 					SET
 						VAR "CHAR_INDEX"

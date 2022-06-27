@@ -41,7 +41,6 @@ CALL
 					GBL "STRING.TO_STRING"
 					VAR "VALUES"
 						NUM 0
-					NUM 10
 					VAR "FOR_STRING"
 				CALL
 					GBL "ARRAY.EXTEND"
