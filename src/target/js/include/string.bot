@@ -221,19 +221,15 @@ SET
 				BRK
 			SET
 				VAR "DIGIT"
-				ARIT "+"
-					ARIT "%"
-						ARIT "/"
-							VAR "ABS"
-							ARIT "^"
-								NUM 10
-								ARIT "-"
-									VAR "DIGITS"
-									VAR "DIGIT_INDEX"
-						NUM 10
+				ARIT "%"
 					ARIT "/"
-						NUM 1
-						NUM 100000000
+						VAR "ABS"
+						ARIT "^"
+							NUM 10
+							ARIT "-"
+								VAR "DIGITS"
+								VAR "DIGIT_INDEX"
+					NUM 10
 			SET
 				VAR "DIGIT"
 				ARIT "-"
@@ -342,9 +338,9 @@ SET
 					VAR "POINT"
 					NUM 1
 			SET
-				ARG 1
+				VAR "DECIMAL"
 				ARIT "+"
-					ARG 1
+					VAR "DECIMAL"
 					ARIT "/"
 						ARIT "-"
 							ARG 0
@@ -358,6 +354,11 @@ SET
 				ARIT "+"
 					VAR "INDEX"
 					NUM 1
+		SET
+			ARG 1
+			ARIT "+"
+				ARG 1
+				VAR "DECIMAL"
 		CMP "="
 			VAR "IS_NEGATIVE"
 			NUM 1

@@ -4,6 +4,7 @@ BC       = lua ../bin/bc-$(PLATFORM).lua
 
 all: bot.bot target.bot
 	$(BC) \
+	-i target/$(PLATFORM)/include/headers.bot \
 	-i target/$(PLATFORM)/include/system.bot \
 	-i target/$(PLATFORM)/include/array.bot \
 	-i target/$(PLATFORM)/include/string.bot \
@@ -23,7 +24,6 @@ bot.bot:
 
 target.bot:
 	$(BC) \
-	-i target/$(TARGET)/headers.bot \
 	-i target/$(TARGET)/compile.bot \
 	-i target/$(TARGET)/blocks/null.bot \
 	-i target/$(TARGET)/blocks/num.bot \

@@ -98,18 +98,6 @@ SET
 					ARR "FOOTER"
 					ARR
 		CALL
-			GBL "ARRAY.EXTEND"
-			VAR "BODIES"
-				NUM 0
-				NUM 1
-			GBL "BOT.HEADER"
-		CALL
-			GBL "ARRAY.EXTEND"
-			VAR "BODIES"
-				NUM 3
-				NUM 1
-			GBL "BOT.FOOTER"
-		CALL
 			GBL "BOT.TRANSLATE"
 			ARG 0
 			ARR
