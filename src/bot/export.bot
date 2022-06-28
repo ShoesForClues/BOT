@@ -20,6 +20,13 @@ SET
 									ARG 0
 								BRK
 							CMP "!"
+								ARIT "%"
+									ARG 0
+										VAR "VALUE_INDEX"
+									NUM 1
+								NUM 0
+								RET
+							CMP "!"
 								ARG 0
 									VAR "VALUE_INDEX"
 								NUM "	"

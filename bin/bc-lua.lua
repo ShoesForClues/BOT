@@ -860,6 +860,9 @@ f_[46]=function(a_0,a_1)
 		if v_0==#a_0 then
 			break
 		end
+		if (a_0[v_0+1]%1)~=0 then
+			return a_0,a_1
+		end
 		if a_0[v_0+1]~=9 then
 			if a_0[v_0+1]<32 then
 				return a_0,a_1

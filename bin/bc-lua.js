@@ -797,6 +797,9 @@ var f_45=function(a_0,a_1) {
 		if (v_0===a_0.length) {
 			break;
 		}
+		if ((a_0[v_0]%1)!==0) {
+			return [a_0,a_1];
+		}
 		if (a_0[v_0]!==9) {
 			if (a_0[v_0]<32) {
 				return [a_0,a_1];
