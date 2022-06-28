@@ -5,7 +5,7 @@ BOT (Block Operation Tree) is a minimal dynamically typed programming language t
 ## Hello World
 ```
 CALL
-	GBL "SYSTEM.PRINT" ;Make sure to include the system library
+	GBL "SYSTEM.PRINT"
 	ARR "Hello World!"
 ```
 You can find more examples under [examples](examples).
