@@ -3,7 +3,7 @@
 
 BOT (Block Operation Tree) is a minimal dynamically typed programming language that compiles to other languages.
 ## Hello World
-```cobol
+```asm
 CALL
 	GBL "SYSTEM.PRINT"
 	ARR "Hello World!"
