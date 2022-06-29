@@ -20,7 +20,6 @@ Look into the [wiki](https://github.com/ShoesForClues/BOT/wiki) for more informa
 - Code validation
 - Wiki documentation
 - Visual editor
-- Macros (maybe?)
 ## License
 This software is free to use. You can modify it and redistribute it under the terms of the 
 MIT license. Check [LICENSE](LICENSE) for further details.
