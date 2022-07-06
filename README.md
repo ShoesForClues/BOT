@@ -18,7 +18,7 @@ Look into the [wiki](https://github.com/ShoesForClues/BOT/wiki) for more informa
 - C support
 - Standard libraries
 - Code validation
-- Wiki documentation
+- Documentation
 - Visual editor
 ## License
 This software is free to use. You can modify it and redistribute it under the terms of the 
