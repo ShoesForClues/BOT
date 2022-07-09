@@ -71,6 +71,13 @@ SET
 			ARG 0
 			ARG 1
 SET
+	GBL "MATH.ATAN2"
+	FUN 3
+		INL "i_2=math.atan2(i_0,i_1)"
+			ARG 0
+			ARG 1
+			ARG 2
+SET
 	GBL "MATH.RAD"
 	FUN 2
 		INL "i_1=math.rad(i_0)"

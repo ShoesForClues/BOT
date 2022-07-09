@@ -695,3 +695,80 @@ SET
 				ARIT "+"
 					VAR "STRING_INDEX"
 					NUM 1
+SET
+	GBL "STRING.GET_WORDS"
+	FUN 2
+		SET
+			VAR "STRING"
+			ARG 0
+		SET
+			VAR "WORDS"
+			ARR
+		LOOP
+			CMP ">="
+				VAR "CHAR_INDEX"
+				LEN
+					VAR "STRING"
+				BRK
+			CMP ">"
+				VAR "STRING"
+					VAR "CHAR_INDEX"
+				NUM 32
+				CMP "<"
+					VAR "STRING"
+						VAR "CHAR_INDEX"
+					NUM 127
+					SUB
+						SET
+							VAR "START"
+							VAR "CHAR_INDEX"
+						LOOP
+							CMP ">="
+								VAR "CHAR_INDEX"
+								LEN
+									VAR "STRING"
+								BRK
+							CMP "<="
+								VAR "STRING"
+									VAR "CHAR_INDEX"
+								NUM 32
+								BRK
+							CMP ">="
+								VAR "STRING"
+									VAR "CHAR_INDEX"
+								NUM 127
+								BRK
+							SET
+								VAR "CHAR_INDEX"
+								ARIT "+"
+									VAR "CHAR_INDEX"
+									NUM 1
+						CALL
+							GBL "STRING.SUB"
+							VAR "STRING"
+							VAR "START"
+							ARIT "-"
+								VAR "CHAR_INDEX"
+								NUM 1
+							VAR "WORD"
+						RES
+							VAR "WORDS"
+							ARIT "+"
+								LEN
+									VAR "WORDS"
+								NUM 1
+						SET
+							VAR "WORDS"
+								ARIT "-"
+									LEN
+										VAR "WORDS"
+									NUM 1
+							VAR "WORD"
+			SET
+				VAR "CHAR_INDEX"
+				ARIT "+"
+					VAR "CHAR_INDEX"
+					NUM 1
+		SET
+			ARG 1
+			VAR "WORDS"

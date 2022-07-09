@@ -39,12 +39,7 @@ SET
 									CMP ">"
 										ARG 0
 											VAR "VALUE_INDEX"
-										NUM 255
-										RET
-									CMP "="
-										ARG 0
-											VAR "VALUE_INDEX"
-										NUM 127
+										NUM 126
 										RET
 							SET
 								VAR "VALUE_INDEX"
