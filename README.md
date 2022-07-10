@@ -16,8 +16,9 @@ You can find more examples under [examples](examples).
 Look into the [wiki](https://github.com/ShoesForClues/BOT/wiki) for more information.
 ## TODO
 - C support
-- Standard libraries
-- Code validation
+- Standard lib
+- Validator
+- Optimizer
 - Documentation
 - Visual editor
 ## License
