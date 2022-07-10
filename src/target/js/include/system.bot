@@ -18,12 +18,21 @@ SET
 SET
 	GBL "SYSTEM.IMPORT"
 	FUN 2
-		INL "i_1=[...Buffer.from(fs.readFileSync(String.fromCharCode(...i_0),"binary"))];"
+		INL "var path=String.fromCharCode(...i_0);"
 			ARG 0
+		INL "i_0=fs.existsSync(path)?1:0;"
+			VAR "FILE_EXISTS"
+		CMP "="
+			VAR "FILE_EXISTS"
+			NUM 0
+			RET
+		INL "i_0=fs.readFileSync(path);"
 			ARG 1
 SET
 	GBL "SYSTEM.EXPORT"
 	FUN 2
-		INL "fs.writeFileSync(String.fromCharCode(...i_0),String.fromCharCode(...i_1));"
+		INL "var path=String.fromCharCode(...i_0);"
 			ARG 0
+		INL "var data=String.fromCharCode(...i_0);"
 			ARG 1
+		INL "fs.writeFileSync(path,data);"

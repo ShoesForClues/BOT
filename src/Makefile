@@ -1,6 +1,9 @@
 PLATFORM = lua
 TARGET   = lua
-BC       = lua ../bin/bc-$(PLATFORM).lua
+
+BC = lua ../bin/bc-$(PLATFORM).lua
+#BC = node ../bin/bc-$(PLATFORM).js
+#BC = bun ../bin/bc-$(PLATFORM).js --
 
 all: bot.bot target.bot
 	$(BC) \

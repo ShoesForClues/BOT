@@ -68,23 +68,31 @@ var f_3=function(a_0) {
 	return [a_0];
 };
 var f_4=function(a_0,a_1) {
+	let v_0=0;
 	let i_0=0;
-	let i_1=0;
 	i_0=a_0;
-	i_1=a_1;
-	i_1=[...Buffer.from(fs.readFileSync(String.fromCharCode(...i_0),"binary"))];
+	var path=String.fromCharCode(...i_0);
 	a_0=i_0;
-	a_1=i_1;
+	i_0=v_0;
+	i_0=fs.existsSync(path)?1:0;
+	v_0=i_0;
+	if (v_0===0) {
+		return [a_0,a_1];
+	}
+	i_0=a_1;
+	i_0=fs.readFileSync(path);
+	a_1=i_0;
 	return [a_0,a_1];
 };
 var f_5=function(a_0,a_1) {
 	let i_0=0;
-	let i_1=0;
 	i_0=a_0;
-	i_1=a_1;
-	fs.writeFileSync(String.fromCharCode(...i_0),String.fromCharCode(...i_1));
+	var path=String.fromCharCode(...i_0);
 	a_0=i_0;
-	a_1=i_1;
+	i_0=a_1;
+	var data=String.fromCharCode(...i_0);
+	a_1=i_0;
+	fs.writeFileSync(path,data);
 	return [a_0,a_1];
 };
 var f_6=function(a_0,a_1) {
