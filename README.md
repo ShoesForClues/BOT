@@ -15,6 +15,7 @@ You can find more examples under [examples](examples).
 ## Documentation
 Look into the [wiki](https://github.com/ShoesForClues/BOT/wiki) for more information.
 ## TODO
+- Python support
 - C support
 - Standard lib
 - Validator
