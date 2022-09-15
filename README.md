@@ -20,6 +20,7 @@ Look into the [wiki](https://github.com/ShoesForClues/BOT/wiki) for more informa
 - Standard lib
 - Validator
 - Optimizer
+- Interpreter
 - Documentation
 - Visual editor
 ## License
