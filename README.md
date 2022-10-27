@@ -9,7 +9,7 @@ CALL
 	ARR "Hello World!"
 ```
 You can find more examples under [examples](examples).
-## Supported Languages
+## Supported Targets
 - Lua (5.1+)
 - JavaScript (ES6+)
 ## Documentation
