@@ -63,55 +63,6 @@ bc.options["-i"]=function(bc,tokens,parameters)
 	end
 end
 
-local function print_ast(node,tab)
-	tab=tab or 0
-	
-	local line=("	"):rep(tab)..node.name.." "
-	
-	for i,parameter in ipairs(node.parameters) do
-		local ascii=true
-		
-		for _,v in ipairs(parameter) do
-			if (
-				v~=9 and
-				(v<32 or
-				v>126)
-			) then
-				ascii=false
-				break
-			end
-		end
-		
-		if ascii then
-			line=line..'"'
-			
-			for _,v in ipairs(parameter) do
-				line=line..string.char(v)
-			end
-			
-			line=line..'"'
-		else
-			for j,v in ipairs(parameter) do
-				line=line..tostring(v)
-				
-				if j<#parameter then
-					line=line.." "
-				end
-			end
-		end
-		
-		if i<#node.parameters then
-			line=line..","
-		end
-	end
-	
-	print(line)
-	
-	for _,child_node in ipairs(node.children) do
-		print_ast(child_node,tab+1)
-	end
-end
-
 bc.options["-c"]=function(bc,tokens,parameters)
 	if #parameters==1 then
 		bc:report("Missing output file.")
@@ -122,12 +73,10 @@ bc.options["-c"]=function(bc,tokens,parameters)
 	local filename = parameters[2]
 	local file     = io.open(filename,"w")
 	local ast      = parser:parse(tokens)
-	--local output   = compiler:compile(ast)
-	
-	print_ast(ast,0)
+	local output   = compiler:compile(ast)
 	
 	if file then
-		--file:write(output)
+		file:write(output)
 		file:close()
 	else
 		bc:report("Cannot write file: '"..filename.."'")
