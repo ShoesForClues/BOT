@@ -48,7 +48,16 @@ parser.grammar["INDENT"]=function(parser,context)
 		end
 	end
 	
-	parser:step(context)
+	local next_token=parser:step(context)
+	
+	if not next_token or next_token.name~="SYMBOL" then
+		parser:report(
+			start_token.filename,
+			start_token.row,
+			start_token.column,
+			"Expecting block"
+		)
+	end
 end
 
 parser.grammar["SYMBOL"]=function(parser,context)
@@ -62,7 +71,10 @@ parser.grammar["SYMBOL"]=function(parser,context)
 	local node={
 		name       = start_token.value,
 		parameters = {},
-		children   = {}
+		children   = {},
+		filename   = start_token.filename,
+		row        = start_token.row,
+		column     = start_token.column
 	}
 	
 	context.current_node.children[#context.current_node.children+1]=node
